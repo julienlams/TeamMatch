@@ -10,9 +10,65 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_02_184559) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_02_190455) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "chat_rooms", force: :cascade do |t|
+    t.bigint "team_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_chat_rooms_on_team_id"
+  end
+
+  create_table "competitions", force: :cascade do |t|
+    t.bigint "sport_id", null: false
+    t.integer "number_of_teams"
+    t.datetime "date_time"
+    t.string "address"
+    t.float "latitude"
+    t.float "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sport_id"], name: "index_competitions_on_sport_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "chat_room_id", null: false
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chat_room_id"], name: "index_messages_on_chat_room_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "sports", force: :cascade do |t|
+    t.string "level"
+    t.string "palmares"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "competition_id", null: false
+    t.integer "number_max_of_participants"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["competition_id"], name: "index_teams_on_competition_id"
+    t.index ["user_id"], name: "index_teams_on_user_id"
+  end
+
+  create_table "user_sports", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "sport_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sport_id"], name: "index_user_sports_on_sport_id"
+    t.index ["user_id"], name: "index_user_sports_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -26,4 +82,23 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_02_184559) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "users_teams", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "team_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_users_teams_on_team_id"
+    t.index ["user_id"], name: "index_users_teams_on_user_id"
+  end
+
+  add_foreign_key "chat_rooms", "teams"
+  add_foreign_key "competitions", "sports"
+  add_foreign_key "messages", "chat_rooms"
+  add_foreign_key "messages", "users"
+  add_foreign_key "teams", "competitions"
+  add_foreign_key "teams", "users"
+  add_foreign_key "user_sports", "sports"
+  add_foreign_key "user_sports", "users"
+  add_foreign_key "users_teams", "teams"
+  add_foreign_key "users_teams", "users"
 end
