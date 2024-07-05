@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_02_190455) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_03_193816) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "chat_rooms", force: :cascade do |t|
+  create_table "chatrooms", force: :cascade do |t|
     t.bigint "team_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["team_id"], name: "index_chat_rooms_on_team_id"
+    t.index ["team_id"], name: "index_chatrooms_on_team_id"
   end
 
   create_table "competitions", force: :cascade do |t|
@@ -35,11 +35,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_02_190455) do
 
   create_table "messages", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "chat_room_id", null: false
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["chat_room_id"], name: "index_messages_on_chat_room_id"
+    t.bigint "chatroom_id"
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
@@ -91,9 +91,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_02_190455) do
     t.index ["user_id"], name: "index_users_teams_on_user_id"
   end
 
-  add_foreign_key "chat_rooms", "teams"
+  add_foreign_key "chatrooms", "teams"
   add_foreign_key "competitions", "sports"
-  add_foreign_key "messages", "chat_rooms"
+  add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
   add_foreign_key "teams", "competitions"
   add_foreign_key "teams", "users"
