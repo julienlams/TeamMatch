@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6 mt-4">
+      <h2>Créer une compétition</h2>
+      <div>
+        <%= simple_form_for(@competition, html: { multipart: true }) do |form| %>
+          <div class="form-inputs mt-4">
+            <%= form.input :name, label: "Nom de la compétition", input_html: { class: 'field-bg-color field-no-border', placeholder: "Nom de la compétition" } %>
+            <%= form.input :sport_id, collection: @sports, label: "Sport", input_html: { class: 'field-bg-color field-no-border' } %>
+            <%= form.input :number_of_teams, label: "Nombre d'équipes maximum", input_html: { class: 'field-bg-color field-no-border', type: 'number', min: '1' } %>
+            <%= form.input :date_time, label: "Date & heure", input_html: { class: 'field-bg-color field-no-border', placeholder: "Date et heure de l'évènement" }, wrapper_html: { class: 'mb-3' }, html5: true %>
+            <%= form.input :address, label: "Adresse", input_html: { class: 'field-bg-color field-no-border', placeholder: "Adresse de l'évènement" } %>
+          </div>
+          <div class="actions">
+            <%= form.submit "Créer la compétition" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

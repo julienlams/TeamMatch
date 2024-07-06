@@ -1,0 +1,14 @@
+<h1>Liste des compétitions</h1>
+
+<ul>
+  <% @competitions.each do |competition| %>
+    <li>
+      <h2><%= competition.name %></h2>
+      <p><strong>Sport:</strong> <%= competition.sport.name %></p>
+      <p><strong>Nombre d'équipes:</strong> <%= competition.number_of_teams %></p>
+      <p><strong>Date & heure:</strong> <%= competition.date_time.strftime('%d %B %Y à %H:%M') %></p>
+      <p><strong>Adresse:</strong> <%= competition.address %></p>
+      <%= link_to "Voir détails", competition_path(competition) %>
+    </li>
+  <% end %>
+</ul>
