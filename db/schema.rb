@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema[7.1].define(version: 2024_07_05_110142) do
+=======
+ActiveRecord::Schema[7.1].define(version: 2024_07_06_143409) do
+>>>>>>> master
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -31,8 +35,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_05_110142) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
+<<<<<<< HEAD
     t.text "description"
     t.bigint "user_id"
+=======
+>>>>>>> master
     t.index ["sport_id"], name: "index_competitions_on_sport_id"
   end
 

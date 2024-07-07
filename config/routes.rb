@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+  get 'competitions/new'
+  get 'competitions/create'
   devise_for :users
   root to: "pages#home"
+  resources :competitions, only: [:new, :create, :show, :index]
   resources :chatrooms, only: :show do
     resources :messages, only: :create
   end
