@@ -1,12 +1,22 @@
-// Specific CSS for your home-page
+// Variables
+$white: #fff;
+$banner-height: 500px;
+$transition-duration: 0.5s;
+$padding: 0.8rem;
+$font-size: 0.875rem;
+$line-height: 1.5;
+$margin-bottom: 2rem;
+$margin-top: 2rem;
+$h1-margin-bottom: 0.5rem;
+
 // Specific CSS for your show-page
 .banner {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 500px;
-  color: #fff;
+  height: $banner-height;
+  color: $white;
   text-align: center;
   background-size: cover;
   background-position: center;
@@ -30,6 +40,9 @@
     z-index: -1;
     animation: animateBanner 15s linear infinite;
   }
+
+  margin-top: $margin-top;
+  margin-bottom: $margin-bottom;
 }
 
 @keyframes animateBanner {
@@ -64,17 +77,50 @@
 }
 
 body {
-  // background: hsl(260, 20%, 20%);
-  background:#fff;
-  color: #fff;
+  background: $white;
+  color: $white;
   font-family: 'Bebas Neue', sans-serif;
   font-weight: 300;
   letter-spacing: 0.03rem;
   line-height: 1;
-  margin: 0rem;
+  margin: 0;
 }
 
 p {
-  font-size: 0.875rem;
-  line-height: 1.5;
+  font-size: $font-size;
+  line-height: $line-height;
+}
+
+img {
+  max-width: 50%;
+  height: auto;
+  object-fit: cover;
+}
+
+.card {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  padding: $padding;
+  background-color: $white;
+  transition: $transition-duration ease-in-out;
+
+  p {
+    font-size: 1rem;
+    text-align: center;
+    margin: 0 0 0 1rem;
+  }
+}
+
+.container {
+  margin-bottom: $margin-bottom;
+}
+
+h1 {
+  margin-bottom: $h1-margin-bottom;
+}
+
+.main-content {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
