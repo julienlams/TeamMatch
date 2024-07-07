@@ -1,1 +1,80 @@
 // Specific CSS for your home-page
+// Specific CSS for your show-page
+.banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 500px;
+  color: #fff;
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1)), image-url('banner_XL.jpg');
+
+  .container {
+    position: relative;
+    z-index: 2;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: inherit;
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    animation: animateBanner 15s linear infinite;
+  }
+}
+
+@keyframes animateBanner {
+  0% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1) translateY(-10%);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+.gradient-text {
+  background: linear-gradient(0deg, $blue, $pink, $yellow);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.yellow-gradient {
+  background: linear-gradient(0deg, $blue, $yellow);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+body {
+  // background: hsl(260, 20%, 20%);
+  background:#fff;
+  color: #fff;
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.03rem;
+  line-height: 1;
+  margin: 0rem;
+}
+
+p {
+  font-size: 0.875rem;
+  line-height: 1.5;
+}

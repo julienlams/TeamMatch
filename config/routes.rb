@@ -5,6 +5,20 @@ Rails.application.routes.draw do
     resources :messages, only: :create
   end
 
+  resources :competitions do
+    resources :teams, only: [:new, :create, :edit, :update, :destroy] do
+      member do
+        post 'register'
+      end
+    end
+  end
+
+  resources :membership_requests, only: [] do
+    member do
+      post 'approve'
+    end
+  end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

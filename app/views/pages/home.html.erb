@@ -1,2 +1,35 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<h1 class="my-5 gradient-text" style="font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-style: normal; font-size: 80px;">
+  SI ON <span>MATCH...</span>, JE TE VEUX DANS MA <span>TEAM</span>
+  <i class="fas fa-medal" style="font-size: 48px; color: #176cc7;"></i>
+</h1>
+
+<!-- Banner -->
+
+<div class="banner mt-4 mb-2 p-5" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.1)), url(<%= asset_path('banner_XL.jpg') %>);">
+  <div class="container">
+    <div class="row justify-content-center align-items-center";>
+      <div class="col-10 col-md-6 text-center">
+        <h2 style="margin-bottom: 60px;"><STRONG>LA PLATEFORME POUR TROUVER VOTRE PARTENAIRE DE JEU</STRONG></h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+ <!-- Competitions Grid -->
+
+<div class="container">
+  <h1 class="my-5 yellow-gradient" style= "font-family:Bebas Neue, sans-serif;font-weight:400;font-style:normal;font-size:60px;">
+  Top compétitions de la semaine!</h1>
+  <%= render 'competitions/competition-card' %>
+</div>
+
+<!-- Button -->
+<%= link_to 'Voir les compétitions', competitions_path, class: 'mt-5 button', style:"font-size:25px" %>
+
+
+<!-- Footer in the layout -->
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

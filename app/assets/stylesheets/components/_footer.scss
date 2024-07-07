@@ -1,0 +1,48 @@
+// Variables
+$footer-height: 80px;
+$footer-padding: 0px 50px;
+$footer-color: rgba(0, 0, 0, 0.3);
+$link-color: #fc466b;
+$link-opacity: 1;
+$link-hover-opacity: 0.6;
+$link-font-size: 24px;
+$link-padding: 0px 10px;
+
+// SCSS Code
+.footer {
+  background: $footer-color;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: $footer-height;
+  padding: $footer-padding;
+  color: $footer-color;
+  margin-top: auto;
+  line-height: 80px;
+
+
+  .footer-links {
+    display: flex;
+    align-items: center;
+
+    a {
+      color: $link-color;
+      opacity: $link-opacity;
+      text-decoration: none;
+      font-size: $link-font-size;
+      padding: $link-padding;
+
+      &:hover {
+        opacity: $link-hover-opacity;
+      }
+    }
+  }
+
+  .fa-heart {
+    color: $link-color;
+  }
+
+  .footer-copyright {
+    color: $pink;
+  }
+}

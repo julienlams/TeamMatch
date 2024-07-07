@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_03_193816) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_05_110142) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -30,7 +30,20 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_03_193816) do
     t.float "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.text "description"
+    t.bigint "user_id"
     t.index ["sport_id"], name: "index_competitions_on_sport_id"
+  end
+
+  create_table "membership_requests", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "team_id", null: false
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_membership_requests_on_team_id"
+    t.index ["user_id"], name: "index_membership_requests_on_user_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -44,8 +57,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_03_193816) do
   end
 
   create_table "sports", force: :cascade do |t|
-    t.string "level"
-    t.string "palmares"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -66,6 +77,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_03_193816) do
     t.bigint "sport_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "level"
+    t.string "palmares"
     t.index ["sport_id"], name: "index_user_sports_on_sport_id"
     t.index ["user_id"], name: "index_user_sports_on_user_id"
   end
@@ -93,6 +106,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_03_193816) do
 
   add_foreign_key "chatrooms", "teams"
   add_foreign_key "competitions", "sports"
+  add_foreign_key "membership_requests", "teams"
+  add_foreign_key "membership_requests", "users"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
   add_foreign_key "teams", "competitions"
