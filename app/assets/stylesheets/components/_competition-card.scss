@@ -1,110 +1,370 @@
 @import url('https://fonts.googleapis.com/css?family=Work+Sans:300,700');
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700,900');
+
+$border-radius-size: 14px;
+$green: #82BB30;
+$pink: #EE5487;
+$yellow: #F6901A;
+
+// Variables
+$white: #fff;
+$blue: #176cc7;
+$banner-height: 600px;
+$transition-duration: 0.5s;
+$padding: 0.8rem;
+$font-size: 0.875rem;
+$line-height: 1.5;
+$margin-bottom: 2rem;
+$margin-top: 2rem;
+$h1-margin-bottom: 0.5rem;
+$card-margin: 0.5rem;
+
+// Reset margins and padding for body and html
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: $white;
+  color: $white;
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.03rem;
+  line-height: 1;
+  margin: 0;
+}
+
+p {
+  font-size: $font-size;
+  line-height: $line-height;
+}
+
+.banner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: $banner-height;
+  color: $white;
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1)), image-url('banner_XL.jpg');
+  opacity: 0.8;
+  z-index: 1;
+
+  .container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: inherit;
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    animation: animateBanner 15s linear infinite;
+  }
+
+  margin-top: 0;
+}
+
+@keyframes animateBanner {
+  0% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1) translateY(-10%);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+.gradient-text {
+  background: linear-gradient(0deg, $blue, $pink, $yellow);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.yellow-gradient {
+  background: linear-gradient(0deg, $blue, $yellow);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+img {
+  max-width: 50%;
+  height: auto;
+  object-fit: cover;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: calc(100% - #{$card-margin * 2});
+  margin: $card-margin;
+  padding: $padding;
+  background-color: $white;
+  transition: $transition-duration ease-in-out;
+
+  p {
+    font-size: 1rem;
+    text-align: center;
+    margin: 0 0 0 1rem;
+  }
+}
 
 .container {
-  width: 100%;
+  margin-bottom: $margin-bottom;
+}
+
+h1 {
+  margin-bottom: $h1-margin-bottom;
+}
+
+.main-content {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.banner-text {
+  text-align: left;
+
+  h1 {
+    font-family: 'Days One', sans-serif;
+    font-weight: 400;
+    font-size: 100px;
+    line-height: 1.2;
+    color: $white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: $white;
+  }
+}
+
+.navbar-lewagon {
+  justify-content: space-between;
+  background-color: transparent;
+  z-index: 1000;
   position: relative;
-  overflow: hidden; /* Ensure no overflow */
 }
 
-.gallery {
-  // Flexbox Default/Fallback - does not produce 100% matching result
-  display: flex;
-  flex-wrap: wrap;
-
-  // Use Grid if browser supports it
-  display: grid;
-  grid-gap: 0.2rem;
-  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
-  grid-auto-rows: minmax(20vh, 10em);
-  grid-auto-flow: dense;
-  z-index: 0;
-
-  li {
-    flex: 0 0 auto;
-    flex-wrap: wrap;
-    height: 20vh;
-    margin: 0.12rem;
-    min-width: 15rem;
-    width: 20rem;
-    object-fit: cover;
-
-    @supports (display: grid) {
-      height: initial;
-      margin: unset;
-      width: initial;
-      min-width: initial;
-
-      &:nth-of-type(2n + 2) {
-        grid-row: span 2;
-      }
-
-      &:nth-of-type(5) {
-        grid-row: span 2;
-      }
-
-      &:nth-of-type(2) {
-        grid-row: span 3;
-      }
-
-      &:nth-of-type(4) {
-        grid-row: span 3;
-      }
-    }
-  }
+.navbar-lewagon .navbar-collapse {
+  flex-grow: 0;
 }
 
-@mixin bg($count) {
-  $path: '//s3-us-west-2.amazonaws.com/s.cdpn.io/150150/bug';
-  $ext: '.jpg';
-  @for $i from 1 through $count {
-    $fullpath: #{$path}-#{$i}#{$ext};
-    li:nth-of-type(#{$i}) {
-      background-image: url(#{$fullpath});
-      z-index: -1;  // Ensure the grid items are below the navbar
-    }
-  }
+.navbar-lewagon .navbar-brand img {
+  width: 40px;
 }
 
-@include bg(18);
-
-ul, li {
-  list-style: none;
-  padding-left: 0;
+.nav-link {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 20px;
 }
 
-li {
-  align-items: stretch;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  display: flex;
-  flex: 1 0 100%;
-  flex-direction: column;
-  justify-content: flex-end;
-  line-height: 3;
-  overflow: hidden;
+.custom-max-width {
+  max-width: 1140px;
+  width: 100%;
+}
 
-  &:hover,
+.slide-container {
+  margin: auto;
+  width: 100%; // Make sure the container takes full width
+  text-align: center;
+}
+
+.wrapper {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  display: inline-block; // Ensure cards are inline blocks
+  margin: 0 $card-margin;
+
   &:focus {
-    .sport-title {
-      background-color: hsla(220, 90%, 15%, 1);
-      height: auto;
-      padding-top: 1rem;
-      padding-bottom: 1rem;
-      transform: translateY(0);
-    }
+    outline: 0;
   }
 }
 
-.sport-title {
-  background-color: hsla(220, 90%, 15%, 0.5);
-  color: #fff;
-  font-size: 0.8rem;
-  line-height: 1.5;
-  margin: 0;
-  padding: 0.25rem 0.5rem;
-  transform: translateY(100px);
-  transition: padding 0.3s ease-in-out, background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+.clash-card {
+  background: white;
+  width: 300px;
+  margin: $card-margin;
+  border-radius: $border-radius-size + 5;
+  position: relative;
+  text-align: center;
+  box-shadow: -1px 15px 30px -12px black;
+  z-index: 9999;
+}
+
+.clash-card__image {
+  position: relative;
+  height: 230px;
+  margin-bottom: 35px;
+  border-top-left-radius: $border-radius-size;
+  border-top-right-radius: $border-radius-size;
+}
+
+.clash-card__image--barbarian {
+  background-color: $green;
+  img {
+    width: 400px;
+    position: absolute;
+    top: -65px;
+    left: -70px;
+  }
+}
+
+.clash-card__image--archer {
+  background-color: $pink;
+  img {
+    width: 400px;
+    position: absolute;
+    top: -34px;
+    left: -37px;
+  }
+}
+
+.clash-card__image--goblin {
+  background-color: $yellow;
+  img {
+    width: 370px;
+    position: absolute;
+    top: -21px;
+    left: -37px;
+  }
+}
+
+.clash-card__level {
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+
+.clash-card__level--barbarian {
+  color: $green;
+}
+
+.clash-card__level--archer {
+  color: $pink;
+}
+
+.clash-card__level--goblin {
+  color: $yellow;
+}
+
+.clash-card__unit-name {
+  font-size: 26px;
+  color: black;
+  font-weight: 900;
+  margin-bottom: 5px;
+}
+
+.clash-card__unit-description {
+  padding: 20px;
+  margin-bottom: 10px;
+}
+
+.clash-card__unit-stats--barbarian {
+  background: $green;
+
+  .one-third {
+    border-right: 1px solid #BD7C2F;
+  }
+}
+
+.clash-card__unit-stats--archer {
+  background: $pink;
+
+  .one-third {
+    border-right: 1px solid #D04976;
+  }
+}
+
+.clash-card__unit-stats--goblin {
+  background: $yellow;
+
+  .one-third {
+    border-right: 1px solid darken($yellow, 6%);
+  }
+}
+
+.clash-card__unit-stats {
+  color: white;
+  font-weight: 700;
+  border-bottom-left-radius: $border-radius-size;
+  border-bottom-right-radius: $border-radius-size;
+
+  .one-third {
+    width: 33%;
+    float: left;
+    padding: 20px 15px;
+  }
+
+  sup {
+    position: absolute;
+    bottom: 4px;
+    font-size: 45%;
+    margin-left: 2px;
+  }
+
+  .stat {
+    position: relative;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .stat-value {
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 12px;
+  }
+
+  .no-border {
+    border-right: none;
+  }
+}
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+.slick-prev {
+  left: 100px;
+  z-index: 999;
+}
+
+.slick-next {
+  right: 100px;
+  z-index: 999;
 }
 
 h1 {
