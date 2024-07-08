@@ -1,6 +1,7 @@
 // Variables
 $white: #fff;
-$banner-height: 500px;
+$blue: #176cc7;
+$banner-height: 600px;
 $transition-duration: 0.5s;
 $padding: 0.8rem;
 $font-size: 0.875rem;
@@ -9,22 +10,31 @@ $margin-bottom: 2rem;
 $margin-top: 2rem;
 $h1-margin-bottom: 0.5rem;
 
-// Specific CSS for your show-page
+// Reset margins and padding for body and html
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
 .banner {
   position: relative;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   height: $banner-height;
   color: $white;
   text-align: center;
   background-size: cover;
   background-position: center;
   background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1)), image-url('banner_XL.jpg');
+  opacity: 0.8;
+  z-index: 1;  // Ajoutez un z-index à la bannière
 
   .container {
     position: relative;
-    z-index: 2;
+    z-index: 2;  // Assurez-vous que le contenu de la bannière est au-dessus de l'image de fond
+    width: 100%;
   }
 
   &::before {
@@ -37,12 +47,11 @@ $h1-margin-bottom: 0.5rem;
     background-image: inherit;
     background-size: cover;
     background-position: center;
-    z-index: -1;
+    z-index: -1;  // L'image de fond devrait être en arrière-plan
     animation: animateBanner 15s linear infinite;
   }
 
-  margin-top: $margin-top;
-  margin-bottom: $margin-bottom;
+  margin-top: 0;
 }
 
 @keyframes animateBanner {
@@ -123,4 +132,21 @@ h1 {
 .main-content {
   padding-top: 1rem;
   padding-bottom: 1rem;
+}
+
+.banner-text {
+  text-align: left;
+  h1 {
+    font-family: 'Days One', sans-serif;
+    font-weight: 400;
+    font-size: 100px;
+    line-height: 1.2;
+    color: $white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: $white;
+  }
 }

@@ -16,12 +16,9 @@
   grid-gap: 0.2rem;
   grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
   grid-auto-rows: minmax(20vh, 10em);
-  // play with values here:
-  // grid-auto-rows: minmax(0, 1fr);
-  // grid-auto-rows: minmax(0, 1fr);
   grid-auto-flow: dense;
+  z-index: 0;
 
-  // flexbox fallback
   li {
     flex: 0 0 auto;
     flex-wrap: wrap;
@@ -32,7 +29,6 @@
     object-fit: cover;
 
     @supports (display: grid) {
-      // unset the properties used for flexbox fallback
       height: initial;
       margin: unset;
       width: initial;
@@ -57,12 +53,6 @@
   }
 }
 
-// Styles for fun
-// -------------------------------------------------
-
-
-
-
 @mixin bg($count) {
   $path: '//s3-us-west-2.amazonaws.com/s.cdpn.io/150150/bug';
   $ext: '.jpg';
@@ -70,6 +60,7 @@
     $fullpath: #{$path}-#{$i}#{$ext};
     li:nth-of-type(#{$i}) {
       background-image: url(#{$fullpath});
+      z-index: -1;  // Ensure the grid items are below the navbar
     }
   }
 }

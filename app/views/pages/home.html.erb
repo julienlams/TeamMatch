@@ -1,19 +1,26 @@
-<h1 class="my-5 gradient-text" style="font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-style: normal; font-size: 80px;">
-  SI ON <span>MATCH...</span>, JE TE VEUX DANS MA <span>TEAM</span>
-  <i class="fas fa-medal" style="font-size: 48px; color: #176cc7;"></i>
-</h1>
 
 <!-- Banner -->
-
-<div class="banner mt-4 mb-2 p-5" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.1)), url(<%= asset_path('banner_XL.jpg') %>);">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.1)), url(<%= asset_path('banner_XL.jpg') %>);">
   <div class="container">
-    <div class="row justify-content-center align-items-center";>
-      <div class="col-10 col-md-6 text-center">
-        <h2 style="margin-bottom: 60px;"><STRONG>LA PLATEFORME POUR TROUVER VOTRE PARTENAIRE DE JEU</STRONG></h2>
+    <%= render 'shared/navbar' %>
+    <div class="banner-text">
+      <h1 class="my-3" style="font-family: 'Days One', sans-serif; font-weight: 400; font-style: normal; font-size: 100px;">
+        Teams that match.
+      </h1>
+      <div class="row justify-content-center align-items-center">
+        <div class="col-12 col-md-6 text-center">
+          <h2 style="margin-bottom: 40px;font-size: 18px; font-family: 'Days One', sans-serif"><strong>La plateforme pour trouver votre partenaire de jeu</strong></h2>
+        </div>
+         <div class="banner-text text-center">
+          <i class="fas fa-medal" style="font-size: 60px; color: white;"></i>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+
+
 
 <!-- Button -->
 <%= link_to 'Voir les compétitions', competitions_path, class: 'mt-5 button', style:"font-size:18px" %>

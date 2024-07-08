@@ -1,30 +1,27 @@
+<!-- Navbar -->
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <div class="container-fluid d-flex justify-content-between align-items-center align-items-center custom-max-width">
-    <%= link_to root_path, class: "navbar-brand" do %>
+  <div class="container-fluid d-flex justify-content-between align-items-center custom-max-width">
+    <%# <%= link_to root_path, class: "navbar-brand" do %>
       <%# <%= image_tag asset_path('LOGO AIR FIESTAS.png'), style:"width:100px;border-radius: 20px" %> %>
-    <% end %>
-
-    <div class="d-flex justify-content-end align-items-center flex-grow-1 align-items-center">
+    <%# <% end %>
+    <div class="d-flex justify-content-end align-items-center flex-grow-1">
       <ul class="navbar-nav align-items-center">
         <% if user_signed_in? %>
           <li class="nav-item active">
-            <%= link_to "Accueil", root_path, class: "nav-link" %>
+            <%= link_to "Home", root_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-        <%# # chemins à modifier %>
-            <%= link_to "Mon profil", reservations_path, class: "nav-link" %>
+            <%= link_to "Profil", user_session_path, class: "nav-link" %> <!-- Ajoutez le bon chemin ici -->
           </li>
           <li class="nav-item">
-            <%= link_to "Mes Team", my_events_path, class: "nav-link" %>
+            <%= link_to "Messages", root_path, class: "nav-link" %> <!-- Ajoutez le bon chemin ici -->
           </li>
           <li class="nav-item">
-            <%= link_to "Ajouter une compétition", new_event_path, class: "nav-link" %>
+            <%= link_to "Ajouter une compétition", new_competition_path, class: "nav-link" %>
           </li>
-
           <li class="nav-item">
-            <%= link_to "Notifications", new_event_path, class: "nav-link" %>
+            <%= link_to "Notifications", root_path, class: "nav-link" %> <!-- Ajoutez le bon chemin ici -->
           </li>
-          <%# # chemins à modifier %>
           <li class="nav-item dropdown">
             <a href="#" class="avatar nav-link" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <%= image_tag "https://i.postimg.cc/zBMBVHnG/man.png", class: "avatar", alt: "dropdown menu" %>
