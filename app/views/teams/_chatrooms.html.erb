@@ -1,0 +1,9 @@
+<!-- app/views/teams/_chatrooms.html.erb -->
+<h2>Chatrooms pour <%= @team.id %></h2>
+<ul>
+  <% @chatrooms.each do |chatroom| %>
+    <li>
+      <%= link_to chatroom.id, chatroom_path(chatroom) %>
+    </li>
+  <% end %>
+</ul>
