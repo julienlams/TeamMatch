@@ -1,1 +1,152 @@
-// Specific CSS for your home-page
+// Variables
+$white: #fff;
+$blue: #176cc7;
+$banner-height: 600px;
+$transition-duration: 0.5s;
+$padding: 0.8rem;
+$font-size: 0.875rem;
+$line-height: 1.5;
+$margin-bottom: 2rem;
+$margin-top: 2rem;
+$h1-margin-bottom: 0.5rem;
+
+// Reset margins and padding for body and html
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+.banner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: $banner-height;
+  color: $white;
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1)), image-url('banner_XL.jpg');
+  opacity: 0.8;
+  z-index: 1;  // Ajoutez un z-index à la bannière
+
+  .container {
+    position: relative;
+    z-index: 2;  // Assurez-vous que le contenu de la bannière est au-dessus de l'image de fond
+    width: 100%;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: inherit;
+    background-size: cover;
+    background-position: center;
+    z-index: -1;  // L'image de fond devrait être en arrière-plan
+    animation: animateBanner 15s linear infinite;
+  }
+
+  margin-top: 0;
+}
+
+@keyframes animateBanner {
+  0% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1) translateY(-10%);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+.gradient-text {
+  background: linear-gradient(0deg, $blue, $pink, $yellow);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.yellow-gradient {
+  background: linear-gradient(0deg, $blue, $yellow);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+body {
+  background: $white;
+  color: $white;
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.03rem;
+  line-height: 1;
+  margin: 0;
+}
+
+p {
+  font-size: $font-size;
+  line-height: $line-height;
+}
+
+img {
+  max-width: 50%;
+  height: auto;
+  object-fit: cover;
+}
+
+.card {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  padding: $padding;
+  background-color: $white;
+  transition: $transition-duration ease-in-out;
+
+  p {
+    font-size: 1rem;
+    text-align: center;
+    margin: 0 0 0 1rem;
+  }
+}
+
+.container {
+  margin-bottom: $margin-bottom;
+}
+
+h1 {
+  margin-bottom: $h1-margin-bottom;
+}
+
+.main-content {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.banner-text {
+  text-align: left;
+  h1 {
+    font-family: 'Days One', sans-serif;
+    font-weight: 400;
+    font-size: 100px;
+    line-height: 1.2;
+    color: $white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: $white;
+  }
+}

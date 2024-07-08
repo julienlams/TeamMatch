@@ -1,0 +1,30 @@
+$button-padding: 8px 24px;
+$button-border-radius: 5px;
+$transition-duration: 0.3s;
+$transition-timing: ease;
+$text-decoration: none;
+$button-color: linear-gradient(0deg, $blue, $yellow);
+
+.button {
+  background: $button-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 45px;
+  max-width: 300px;
+  padding: $button-padding;
+  margin: 0 auto;
+  color: white;
+  font-weight: bold;
+  // background-color:$mixed-pink-color;
+  border-radius: $button-border-radius;
+  box-shadow:0 0 0 10px #ffffffeb;
+  transition: background-color $transition-duration $transition-timing, color $transition-duration $transition-timing, opacity $transition-duration $transition-timing;
+
+  &:hover {
+    color:$blue;
+    opacity: 0.7;
+    text-decoration: $text-decoration;
+  }
+}

@@ -1,2 +1,52 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+
+<!-- Banner -->
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.1)), url(<%= asset_path('banner_XL.jpg') %>);">
+  <div class="container">
+    <%= render 'shared/navbar' %>
+    <div class="banner-text">
+      <h1 class="my-3" style="font-family: 'Days One', sans-serif; font-weight: 400; font-style: normal; font-size: 100px;">
+        Teams that match.
+      </h1>
+      <div class="row justify-content-center align-items-center">
+        <div class="col-12 col-md-6 text-center">
+          <h2 style="margin-bottom: 40px;font-size: 18px; font-family: 'Days One', sans-serif"><strong>La plateforme pour trouver votre partenaire de jeu</strong></h2>
+        </div>
+         <div class="banner-text text-center">
+          <i class="fas fa-medal" style="font-size: 60px; color: white;"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Button -->
+<%= link_to 'Voir les compétitions', competitions_path, class: 'mt-5 button', style:"font-size:18px" %>
+ <!-- Competitions Grid -->
+
+<div class="container">
+  <h1 class="my-5 yellow-gradient" style= "font-family:Bebas Neue, sans-serif;font-weight:400;font-style:normal;font-size:60px;">
+  Top compétitions de la semaine!</h1>
+  <%= render 'competitions/competition-card' %>
+</div>
+
+<div class="container">
+  <h1 class="my-5 yellow-gradient" style="font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-style: normal; font-size: 60px;">
+    Top joueur de la semaine!
+  </h1>
+  <div class="card d-flex">
+    <img src="<%= asset_path('top joueur de la semaine.png') %>" alt="Top joueur de la semaine">
+    <p>Jordan a créé 15 teams et remporté 10 victoires sur ses compétitions 🎉</p>
+  </div>
+</div>
+
+
+
+<!-- Footer in the layout -->
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

@@ -1,0 +1,13 @@
+<h1><%= @competition.name %></h1>
+<p><%= @competition.description %></p>
+
+<div class="teams">
+  <% @competition.teams.each do |team| %>
+    <div class="team-card">
+      <h2><%= team.name %></h2>
+      <p><%= team.description %></p>
+      <!-- Bouton de demande d'inscription -->
+      <%= link_to 'Demander à rejoindre l\'équipe', register_competition_team_path(@competition, team), method: :post, class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>
