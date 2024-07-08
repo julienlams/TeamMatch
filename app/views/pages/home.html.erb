@@ -1,4 +1,3 @@
-
 <!-- Banner -->
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.1)), url(<%= asset_path('banner_XL.jpg') %>);">
   <div class="container">
@@ -11,24 +10,40 @@
         <div class="col-12 col-md-6 text-center">
           <h2 style="margin-bottom: 40px;font-size: 18px; font-family: 'Days One', sans-serif"><strong>La plateforme pour trouver votre partenaire de jeu</strong></h2>
         </div>
-         <div class="banner-text text-center">
+        <div class="banner-text text-center">
           <i class="fas fa-medal" style="font-size: 60px; color: white;"></i>
+        </div>
+      </div>
+      <div class="circle-images mt-5">
+        <div class="circle-item">
+          <img src="<%= asset_path('Gymnastique.png') %>" alt="Gymnastique" class="circle">
+          <p class="circle-title">Gymnastique</p>
+        </div>
+        <div class="circle-item">
+          <img src="<%= asset_path('Padel.png') %>" alt="Padel" class="circle">
+          <p class="circle-title">Padel</p>
+        </div>
+        <div class="circle-item">
+          <img src="<%= asset_path('Ping pong.png') %>" alt="Ping pong" class="circle">
+          <p class="circle-title">Ping pong</p>
+        </div>
+        <div class="circle-item">
+          <img src="<%= asset_path('Tennis.png') %>" alt="Tennis" class="circle">
+          <p class="circle-title">Tennis</p>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-
-
-
 <!-- Button -->
 <%= link_to 'Voir les compétitions', competitions_path, class: 'mt-5 button', style:"font-size:18px" %>
- <!-- Competitions Grid -->
 
+<!-- Competitions Grid -->
 <div class="container">
-  <h1 class="my-5 yellow-gradient" style= "font-family:Bebas Neue, sans-serif;font-weight:400;font-style:normal;font-size:60px;">
-  Top compétitions de la semaine!</h1>
+  <h1 class="my-5 yellow-gradient" style="font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-style: normal; font-size: 60px;">
+    Top compétitions de la semaine!
+  </h1>
   <%= render 'competitions/competition-card' %>
 </div>
 
@@ -42,10 +57,7 @@
   </div>
 </div>
 
-
-
 <!-- Footer in the layout -->
-
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>

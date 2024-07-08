@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:300,700');
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700,900');
+
 // Variables
 $white: #fff;
 $blue: #176cc7;
@@ -16,6 +19,21 @@ html, body {
   padding: 0;
 }
 
+body {
+  background: $white;
+  color: $white;
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.03rem;
+  line-height: 1;
+  margin: 0;
+}
+
+p {
+  font-size: $font-size;
+  line-height: $line-height;
+}
+
 .banner {
   position: relative;
   display: flex;
@@ -29,11 +47,11 @@ html, body {
   background-position: center;
   background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1)), image-url('banner_XL.jpg');
   opacity: 0.8;
-  z-index: 1;  // Ajoutez un z-index à la bannière
+  z-index: 1;
 
   .container {
     position: relative;
-    z-index: 2;  // Assurez-vous que le contenu de la bannière est au-dessus de l'image de fond
+    z-index: 2;
     width: 100%;
   }
 
@@ -47,12 +65,51 @@ html, body {
     background-image: inherit;
     background-size: cover;
     background-position: center;
-    z-index: -1;  // L'image de fond devrait être en arrière-plan
+    z-index: -1;
     animation: animateBanner 15s linear infinite;
   }
 
   margin-top: 0;
+
+  .circle-images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px; // adjust as needed
+  }
+
+  .circle-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 30px;
+    width: 120px;
+    height: 120px;
+
+    img {
+      width: 120px;
+      height: 120px;
+    }
+
+    .circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      border: 3px solid white;
+      overflow: hidden;
+    }
+
+    .circle-title {
+      margin-top: 10px;
+      font-size: 12px;
+      color: white;
+      text-align: center;
+    }
+  }
 }
+
 
 @keyframes animateBanner {
   0% {
@@ -83,21 +140,6 @@ html, body {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
-}
-
-body {
-  background: $white;
-  color: $white;
-  font-family: 'Bebas Neue', sans-serif;
-  font-weight: 300;
-  letter-spacing: 0.03rem;
-  line-height: 1;
-  margin: 0;
-}
-
-p {
-  font-size: $font-size;
-  line-height: $line-height;
 }
 
 img {
@@ -136,6 +178,7 @@ h1 {
 
 .banner-text {
   text-align: left;
+
   h1 {
     font-family: 'Days One', sans-serif;
     font-weight: 400;
@@ -144,6 +187,7 @@ h1 {
     color: $white;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   }
+
   h2 {
     font-size: 1.5rem;
     font-weight: 300;
