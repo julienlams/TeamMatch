@@ -6,6 +6,6 @@ class User < ApplicationRecord
   has_many :user_sports
   has_many :sports, through: :user_sports
   has_many :users_teams
-  has_many :teams, through: :users_teams
+  has_many :teams, through: :users_teams, dependent: :destroy
   has_many :messages
 end

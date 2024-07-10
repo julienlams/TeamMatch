@@ -1,8 +1,53 @@
-<div>
-  <h2><%= @competition.name %></h2>
-  <p><strong>Sport:</strong> <%= @competition.sport.name %></p>
-  <p><strong>Nombre d'équipes:</strong> <%= @competition.number_of_teams %></p>
-  <p><strong>Date & heure:</strong> <%= @competition.date_time.strftime('%d %B %Y à %H:%M') %></p>
-  <p><strong>Adresse:</strong> <%= @competition.address %></p>
-  <%= link_to "Retour à la liste des compétitions", competitions_path, class: "btn btn-primary" %>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-9">
+      <div class="px-4">
+        <h2><%= @competition.name %></h2>
+        <p><strong>Sport:</strong> <%= @competition.sport.name %></p>
+        <p><strong>Nombre d'équipes:</strong> <%= @competition.teams.count %></p>
+        <p><strong>Date & heure:</strong> <%= @competition.date_time.strftime('%d %B %Y à %H:%M') %></p>
+        <p><strong>Adresse:</strong> <%= @competition.address %></p>
+        <%= link_to "Retour à la liste des compétitions", competitions_path, class: "btn btn-primary" %>
+      </div>
+
+      <div class="mt-4 px-4">
+        <h3>Équipes inscrites</h3>
+        <ul class="list-unstyled">
+          <% @competition.teams.order(created_at: :desc).each do |team| %>
+            <li class="mb-3">
+              <strong>Nom de l'équipe:</strong> <%= team.name %><br>
+              <strong>Nombre maximum de participants:</strong> <%= team.number_max_of_participants %><br>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="mt-4 px-4">
+        <%= simple_form_for([@competition, @competition.teams.build], url: competition_teams_path(@competition), html: { class: 'form-horizontal' }) do |f| %>
+          <% if @team.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@team.errors.count, "error") %> prohibited this team from being saved:</h2>
+              <ul>
+                <% @team.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="form-group">
+            <%= f.input :name, label: 'Nom de l\'équipe', input_html: { class: 'form-control' } %>
+          </div>
+          <div class="form-group">
+            <%= f.input :number_max_of_participants, label: 'Nombre maximum de participants', input_html: { class: 'form-control', min: 0 } %>
+          </div>
+          <div class="form-group">
+            <%= f.submit 'Ajouter l\'équipe', class: 'btn btn-success btn-block' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema[7.1].define(version: 2024_07_10_194816) do
+=======
+ActiveRecord::Schema[7.1].define(version: 2024_07_10_154235) do
+>>>>>>> master
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -72,6 +76,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_10_194816) do
     t.integer "number_max_of_participants"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
     t.index ["competition_id"], name: "index_teams_on_competition_id"
     t.index ["user_id"], name: "index_teams_on_user_id"
   end
