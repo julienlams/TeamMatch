@@ -1,10 +1,12 @@
 require 'faker'
 
 # Clear existing data
-User.destroy_all
+Message.destroy_all
+Chatroom.destroy_all
 Team.destroy_all
 Competition.destroy_all
 Sport.destroy_all
+User.destroy_all
 
 # Array of user data
 users_data = [
