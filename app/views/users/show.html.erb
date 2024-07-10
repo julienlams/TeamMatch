@@ -2,7 +2,7 @@
 <div class="container-profil" data-controller="add-sport">
   <div class="left-column">
     <div class="profile">
-      <img src="https://picsum.photos/id/237/200/300">
+      <img src="https://picsum.photos/200/300">
       <h2><%= @user.id %>USERNAME</h2>
     </div>
     <div class="sports">
@@ -41,21 +41,22 @@
   </div>
 
   <div class="right-column">
-    <div class="teams">
-      <h3>Dernières teams</h3>
-      <% if @user.teams.any? %>
-        <% @user.teams.each do |team| %>
-          <div class="team">
-            <img src="team_image_placeholder.jpg" alt="<%= team.name %>">
-            <p><%= team.name %></p>
-            <p>Sport: <%= team.sport %></p>
-          </div>
-        <% end %>
-      <% else %>
-        <p>Aucune équipe disponible</p>
+  <div class="teams">
+    <h3>Dernières teams</h3>
+    <% if @owned_teams.any? %>
+      <p><%= @owned_teams.count %> équipes trouvées</p>
+      <% @owned_teams.each do |team| %>
+        <div class="team">
+          <img src="https://picsum.photos/200/300" alt="<%= team.name %>">
+          <p><%= team.name %></p>
+          <p>Sport: <%= team.id %></p>
+        </div>
       <% end %>
-    </div>
+    <% else %>
+      <p>Aucune équipe disponible</p>
+    <% end %>
   </div>
+</div>
 
  <!-- Modale pour ajouter un sport -->
   <div class="modal" data-add-sport-target="sportModal">
