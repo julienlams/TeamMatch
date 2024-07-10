@@ -36,24 +36,24 @@
   </div>
 </div>
 
-<!-- Button -->
-<%= link_to 'Voir les compétitions', competitions_path, class: 'mt-5 button', style:"font-size:18px" %>
-
 <!-- Competitions Grid -->
 <div class="container">
-  <h1 class="my-5 yellow-gradient" style="font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-style: normal; font-size: 60px;">
+  <h1 class="mt-5 yellow-gradient" style="font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-style: normal; font-size: 60px;">
     Top compétitions de la semaine!
   </h1>
+
+  <!-- Button -->
+<%=  link_to ('VOIR TOUTES LES COMPETITIONS <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" /></svg>').html_safe, competitions_path, class: 'button', style: "font-size:18px; font-family: 'Bebas Neue'" %>
+
   <%= render 'competitions/competition-card' %>
 </div>
 
 <div class="container">
   <h1 class="my-5 yellow-gradient" style="font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-style: normal; font-size: 60px;">
-    Top joueur de la semaine!
+    Top joueur de la semaine 🎉!
   </h1>
-  <div class="card d-flex">
-    <img src="<%= asset_path('top joueur de la semaine.png') %>" alt="Top joueur de la semaine">
-    <p>Jordan a créé 15 teams et remporté 10 victoires sur ses compétitions 🎉</p>
+  <div class="card">
+    <img src="<%= asset_path('Big Match Tennis_joueur de la semaine.png') %>" alt="Top joueur de la semaine">
   </div>
 </div>
 
