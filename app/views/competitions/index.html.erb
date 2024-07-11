@@ -1,21 +1,29 @@
-<h1 class = "mt-5 yellow-gradient">TOUTES NOS COMPETITIONS</h1>
+<h1 class="mt-5 yellow-gradient" style="font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-style: normal; font-size: 60px;">TOUTES NOS COMPETITIONS</h1>
 
-<div class="container">
-  <!-- Search bar -->
-  <div class="search-bar">
-    <input type="text" placeholder="Recherche par ville ou compétition ou par sport">
-    <button><i class="fas fa-arrow-right"></i></button>
+<!-- Banner -->
+<div class="mt-5 banner" style="height: 300px; background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.1)), url(<%= asset_path('banner_XL.jpg') %>);">
+  <div class="container">
+    <div class="banner-text">
+      <h1 class="my-3" style="font-family: 'Days One', sans-serif; font-weight: 400; font-style: normal; font-size: 60px;">
+        Choisis ta Team.
+      </h1>
+    </div>
   </div>
+</div>
 
-  <!-- Main content -->
+<div class="container index-page">
+
   <div class="main-content">
-    <div class="competitions-column">
+    <div class="sidebar">
+      <!-- Search bar -->
+      <div class="search-bar">
+        <input type="text" placeholder="Recherche par ville ou compétition ou par sport">
+        <button><i class="fas fa-arrow-right"></i></button>
+      </div>
+
       <!-- Cards -->
-      <%# <%= render 'competitions/competition-card' %>
-
-
       <div class="wrapper">
-        <%= link_to competitions_path, class: 'clash-card-link' do %>
+        <%= link_to competition_path(1), class: 'clash-card-link' do %> <!-- Utiliser un ID factice pour test -->
           <div class="clash-card archer">
             <div class="clash-card__image clash-card__image--archer">
               <img src="<%= asset_path('ping pong vector image_card homepage.png') %>" alt="Ping pong" />
@@ -46,7 +54,7 @@
       </div> <!-- end wrapper -->
 
       <div class="wrapper">
-        <%= link_to competitions_path, class: 'clash-card-link' do %>
+        <%= link_to competition_path(2), class: 'clash-card-link' do %> <!-- Utiliser un ID factice pour test -->
           <div class="clash-card goblin">
             <div class="clash-card__image clash-card__image--goblin">
               <img src="<%= asset_path('tennis girl vector_card homepage.png') %>" alt="goblin" />
@@ -75,13 +83,13 @@
           </div> <!-- end clash-card goblin-->
         <% end %>
       </div> <!-- end wrapper -->
+    </div>
 
-    </div> <!-- end competitions-column -->
-
-    <div class="map-column">
-      <!-- Carte Mapbox sera ajoutée ici plus tard -->
-      <img src="<%= asset_path('01-03_City_map2v_generated.jpg') %>" alt="Map" />
-    </div> <!-- end map-column -->
-
+    <div class="content">
+      <div class="map-column">
+        <!-- Carte Mapbox sera ajoutée ici plus tard -->
+        <%# <img src="<%= asset_path('01-03_City_map2v_generated.jpg') %>
+      </div> <!-- end map-column -->
+    </div>
   </div> <!-- end main-content -->
 </div> <!-- end container -->
