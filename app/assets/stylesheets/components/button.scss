@@ -6,24 +6,27 @@ $text-decoration: none;
 $button-color: linear-gradient(0deg, $blue, $yellow);
 
 .button {
-  background: $button-color;
+  // background: $button-color;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: right;
   width: 50%;
   height: 45px;
   max-width: 300px;
   padding: $button-padding;
+  margin-top: 0;
   margin: 0 auto;
-  color: white;
+  color: grey;
+  opacity: 0.8;
   font-weight: bold;
   // background-color:$mixed-pink-color;
   border-radius: $button-border-radius;
   box-shadow:0 0 0 10px #ffffffeb;
   transition: background-color $transition-duration $transition-timing, color $transition-duration $transition-timing, opacity $transition-duration $transition-timing;
 
+
   &:hover {
-    color:$blue;
+    color:inherit;
     opacity: 0.7;
     text-decoration: $text-decoration;
   }

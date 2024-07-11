@@ -1,3 +1,5 @@
+# db/seeds.rb
+
 require 'faker'
 
 # Clear existing data
@@ -57,12 +59,12 @@ users_data.each do |user_data|
       ]
     },
     {
-      name: "Gymnastique",
+      name: "Badminton",
       competitions: [
-        { name: "Championnat de France de Gymnastique", city: "Paris", address: "25 Avenue Pierre de Coubertin, 75013 Paris" },
-        { name: "Lyon Gymnastics Cup", city: "Lyon", address: "8 Avenue Jean Mermoz, 69008 Lyon" },
-        { name: "Marseille Gym Festival", city: "Marseille", address: "40 Boulevard Charles Livon, 13007 Marseille" },
-        { name: "Montpellier Gym Challenge", city: "Montpellier", address: "111 Place Vauban, 34000 Montpellier" }
+        { name: "Championnat de France de Badminton", city: "Paris", address: "25 Avenue Pierre de Coubertin, 75013 Paris" },
+        { name: "Lyon Badminton Cup", city: "Lyon", address: "8 Avenue Jean Mermoz, 69008 Lyon" },
+        { name: "Marseille Badminton Festival", city: "Marseille", address: "40 Boulevard Charles Livon, 13007 Marseille" },
+        { name: "Montpellier Badminton Challenge", city: "Montpellier", address: "111 Place Vauban, 34000 Montpellier" }
       ]
     }
   ]
@@ -80,7 +82,7 @@ users_data.each do |user_data|
       competition = Competition.create!(
         sport: sport,
         name: competition_data[:name],
-        number_of_teams: rand(3..6), # Adjusted to create between 3 to 6 teams
+        number_of_teams: rand(3..6), # Random number of teams between 3 to 6
         date_time: Faker::Time.forward(days: 30),
         address: competition_data[:address],
         created_at: Time.now,
@@ -91,15 +93,13 @@ users_data.each do |user_data|
 
       # Create teams for this competition
       competition.number_of_teams.times do
-        team = Team.create!(
-          user: User.all.sample, # Assign a random user to the team
+        Team.create!(
+          owner_id: User.all.sample.id, # Assign a random user as the owner of the team
           competition: competition,
           number_max_of_participants: rand(5..15),
           created_at: Time.now,
           updated_at: Time.now
         )
-
-        puts "Team created for competition '#{competition.name}' with user '#{team.user.email}'"
       end
     end
   end

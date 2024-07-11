@@ -38,6 +38,11 @@ body {
 p {
   font-size: $font-size;
   line-height: $line-height;
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none;
 }
 
 .banner {
@@ -129,6 +134,7 @@ img {
     font-size: 1rem;
     text-align: center;
     margin: 0 0 0 1rem;
+    text-decoration: none;
   }
 }
 
@@ -164,48 +170,27 @@ h1 {
   }
 }
 
-.navbar-lewagon {
-  justify-content: space-between;
-  background-color: transparent;
-  z-index: 1000;
-  position: relative;
-}
-
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
-}
-
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
-}
-
-.nav-link {
-  font-family: "Bebas Neue", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 20px;
-}
-
-.custom-max-width {
-  max-width: 1140px;
-  width: 100%;
-}
-
 .slide-container {
   margin: auto;
-  width: 100%; // Make sure the container takes full width
+  width: 100%;
   text-align: center;
 }
 
 .wrapper {
   padding-top: 40px;
   padding-bottom: 40px;
-  display: inline-block; // Ensure cards are inline blocks
-  margin: 0 $card-margin;
+  display: inline-block;
+  margin: 40px $card-margin;
 
   &:focus {
     outline: 0;
   }
+}
+
+.clash-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
 
 .clash-card {
@@ -230,30 +215,39 @@ h1 {
 .clash-card__image--barbarian {
   background-color: $green;
   img {
-    width: 400px;
+    width: 350px;
+    height:250px;
     position: absolute;
-    top: -65px;
-    left: -70px;
+    top: -70px;
+    left: 70px;
+    right: 80px;
+    overflow:visible;
   }
 }
 
 .clash-card__image--archer {
   background-color: $pink;
   img {
-    width: 400px;
+    width: 350px;
+    height:250px;
     position: absolute;
-    top: -34px;
-    left: -37px;
+    top: -70px;
+    left: 70px;
+    right: 80px;
+    overflow:visible;
   }
 }
 
 .clash-card__image--goblin {
   background-color: $yellow;
   img {
-    width: 370px;
+    width: 350px;
+    height:250px;
     position: absolute;
-    top: -21px;
-    left: -37px;
+    top: -70px;
+    left: 70px;
+    right: 80px;
+    overflow:visible;
   }
 }
 
@@ -262,6 +256,7 @@ h1 {
   font-size: 12px;
   font-weight: 700;
   margin-bottom: 3px;
+  text-decoration: none;
 }
 
 .clash-card__level--barbarian {
@@ -281,11 +276,15 @@ h1 {
   color: black;
   font-weight: 900;
   margin-bottom: 5px;
+  text-decoration: none;
 }
 
 .clash-card__unit-description {
   padding: 20px;
   margin-bottom: 10px;
+  height: 150px;
+  overflow: hidden;
+  text-decoration: none;
 }
 
 .clash-card__unit-stats--barbarian {
@@ -324,16 +323,16 @@ h1 {
     padding: 20px 15px;
   }
 
-  sup {
-    position: absolute;
-    bottom: 4px;
-    font-size: 45%;
-    margin-left: 2px;
-  }
+  // sup {
+  //   position: absolute;
+  //   bottom: 4px;
+  //   font-size: 45%;
+  //   margin-left: 2px;
+  // }
 
   .stat {
     position: relative;
-    font-size: 24px;
+    font-size: 18px;
     margin-bottom: 10px;
   }
 
