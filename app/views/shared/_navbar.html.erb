@@ -12,7 +12,7 @@
             <%= link_to "Home", root_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Profil", user_session_path, class: "nav-link" %> <!-- Ajoutez le bon chemin ici -->
+            <%= link_to "Profil", user_path(current_user), class: "nav-link" %> <!-- Ajoutez le bon chemin ici -->
           </li>
           <li class="nav-item">
             <%= link_to "Messages", root_path, class: "nav-link" %> <!-- Ajoutez le bon chemin ici -->

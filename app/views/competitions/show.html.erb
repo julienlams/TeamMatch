@@ -15,8 +15,8 @@
         <ul class="list-unstyled">
           <% @competition.teams.order(created_at: :desc).each do |team| %>
             <li class="mb-3">
-              <strong>Nom de l'équipe:</strong> <%= team.name %><br>
-              <strong>Nombre maximum de participants:</strong> <%= team.number_max_of_participants %><br>
+              <strong>Nom de l'équipe:</strong> <%= link_to team.name, user_path(team.owner_id) %><br>
+              <strong>Nombre maximum de participants:</strong> <%= link_to team.number_max_of_participants, user_path(team.owner_id) %><br>
             </li>
           <% end %>
         </ul>
