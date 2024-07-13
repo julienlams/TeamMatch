@@ -123,14 +123,17 @@ sports_with_competitions.each do |sport_data|
     puts "Competition created: #{competition.name}"
 
     # Create teams for this competition
-    competition.number_of_teams.times do
-      Team.create!(
-        owner_id: User.all.sample.id, # Assign a random user as the owner of the team
+    competition.number_of_teams.times do |i|
+      team = Team.create!(
+        owner: User.all.sample, # Assign a random user as the owner of the team
         competition: competition,
+        name: "#{competition_data[:name]} Team #{i + 1}",
         number_max_of_participants: rand(5..15),
         created_at: Time.now,
         updated_at: Time.now
       )
+
+      puts "Team created: #{team.name} for competition: #{competition.name}"
     end
   end
 end
