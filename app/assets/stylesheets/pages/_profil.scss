@@ -32,3 +32,67 @@
     margin-right: 10px;
   }
 }
+.card-profil {
+  position: relative;
+  background-size: cover;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.card-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+  border-radius: 0.25rem;
+}
+
+.card-body {
+  position: relative;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 0.25rem;
+}
+
+.card-body h5, .card-body p {
+  margin: 0;
+}
+.card-profil-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.card-profil-link:hover,
+.card-profil-link:focus,
+.card-profil-link:active {
+  color: inherit;
+  text-decoration: none;
+}
+
+.card-profil-footer {
+  text-align: center;
+  margin-top: 10px;
+}
+.btn-profil {
+  text-decoration: none;
+  color: white;
+  padding: 10px 15px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.btn-profil:hover {
+  background-color: #0056b3;
+}
+
+.btn-profil:focus {
+  outline: none;
+}

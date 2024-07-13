@@ -10,18 +10,18 @@
         <%= link_to "Retour à la liste des compétitions", competitions_path, class: "btn btn-primary" %>
       </div>
 
-      <div class="mt-4 px-4">
-        <h3>Équipes inscrites</h3>
-        <ul class="list-unstyled">
-          <% @competition.teams.order(created_at: :desc).each do |team| %>
-            <li class="mb-3">
-              <strong>Nom de l'équipe:</strong> <%= link_to team.name, user_path(team.owner_id) %><br>
-              <strong>Nombre maximum de participants:</strong> <%= link_to team.number_max_of_participants, user_path(team.owner_id) %><br>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    </div>
+<div class="mt-4 px-4">
+  <h3>Équipes inscrites</h3>
+  <ul class="list-unstyled">
+    <% @competition.teams.order(created_at: :desc).each do |team| %>
+      <li class="mb-3">
+        <strong>Nom de l'équipe:</strong> <%= link_to team.name, user_path(team.owner_id) %><br>
+        <strong>Nombre maximum de participants:</strong> <%= link_to team.number_max_of_participants, user_path(team.owner_id) %><br>
+        <%= link_to 'Rejoindre', chatroom_path(team.chatroom), class: 'btn btn-primary' %>
+      </li>
+    <% end %>
+  </ul>
+</div>
 
     <div class="col-md-3">
       <div class="mt-4 px-4">

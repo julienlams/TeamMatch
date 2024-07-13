@@ -1,0 +1,19 @@
+.button-container {
+  margin: 20px 0;
+  padding: 0 20px;
+}
+
+.button-back {
+  width: calc(100% - 40px); /* 100% width minus 40px for the left and right margins */
+  padding: 10px 0;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.button-back:hover {
+  background-color: #e0e0e0;
+}
