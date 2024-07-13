@@ -1,18 +1,9 @@
-<div class="container chatroom">
-  <div class="teams">
-    <h2>Mes équipes</h2>
-    <ul>
-      <% @teams.each do |team| %>
-        <li>
-          <%= link_to team.name, "#", data: { turbo_frame: "team-#{team.id}" } %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
+<h2>Mes équipes</h2>
 
-  <div class="chatrooms">
-    <% @teams.each do |team| %>
-      <turbo-frame id="team-<%= team.id %>" src="<%= team_chatrooms_path(team) %>"></turbo-frame>
-    <% end %>
-  </div>
-</div>
+<ul class="list-unstyled">
+  <% @chatrooms.each do |chatroom| %>
+    <li class="mb-3">
+      <strong>Nom de l'équipe:</strong> <%= link_to chatroom.team.name, chatroom_path(chatroom) %><br>
+    </li>
+  <% end %>
+</ul>
