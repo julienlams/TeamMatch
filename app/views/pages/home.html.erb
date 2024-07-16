@@ -1,12 +1,9 @@
 <!-- Banner -->
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.1)), url(<%= asset_path('banner_XL.jpg') %>);">
   <div class="container">
-    <div style="margin-top: -80px;">
-      <%= render 'shared/navbar' %>
-    </div>
     <div class="banner-text">
-      <h1 class="my-3" style="font-family: 'Days One', sans-serif; font-weight: 400; font-style: normal; font-size: 100px;">
-        Teams that match.
+      <h1 class="my-3" style="font-family: 'Days One', sans-serif; font-weight: 400; font-style: normal; font-size: 120px;">
+        TeamMatch.
       </h1>
       <div class="row justify-content-center align-items-center">
         <div class="col-12 col-md-6 text-center">
@@ -18,8 +15,8 @@
       </div>
       <div class="circle-images mt-5">
         <div class="circle-item">
-          <img src="<%= asset_path('Gymnastique.png') %>" alt="Gymnastique" class="circle">
-          <p class="circle-title">Gymnastique</p>
+          <img src="<%= asset_path('Gymnastique.png') %>" alt="Badminton" class="circle">
+          <p class="circle-title">Badminton</p>
         </div>
         <div class="circle-item">
           <img src="<%= asset_path('Padel.png') %>" alt="Padel" class="circle">
@@ -39,7 +36,6 @@
 </div>
 
 <!-- Competitions Grid -->
-<div class="container">
   <h1 class="mt-5 yellow-gradient" style="font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-style: normal; font-size: 60px;">
     Top compétitions de la semaine!
   </h1>
@@ -47,17 +43,18 @@
   <!-- Button -->
   <%= link_to ('VOIR TOUTES LES COMPETITIONS <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" /></svg>').html_safe, competitions_path, class: 'button', style: "font-size:18px; font-family: 'Bebas Neue'" %>
 
-  <%= render 'competitions/competition-card' %>
-</div>
-
-<div class="container">
-  <h1 class="my-5 yellow-gradient" style="font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-style: normal; font-size: 60px;">
-    Top joueur de la semaine 🎉!
-  </h1>
-  <div class="card">
-    <img src="<%= asset_path('Big Match Tennis_joueur de la semaine.png') %>" alt="Top joueur de la semaine">
+  <div class="slide-container">
+    <%= render 'competitions/competition-card' %>
   </div>
 </div>
+
+
+  <h1 class="mb-2 yellow-gradient" style="font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-style: normal; font-size: 60px;">
+    Top joueur de la semaine 🎉!
+  </h1>
+  <div class="slide-container card">
+    <img src="<%= asset_path('Big Match Tennis_joueur de la semaine.png') %>" alt="Top joueur de la semaine">
+  </div>
 
 <!-- Footer in the layout -->
 

@@ -4,92 +4,67 @@
 <div class="mt-5 banner" style="height: 300px; background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.1)), url(<%= asset_path('banner_XL.jpg') %>);">
   <div class="container">
     <div class="banner-text">
-      <h1 class="my-3" style="font-family: 'Days One', sans-serif; font-weight: 400; font-style: normal; font-size: 60px;">
-        Choisis ta Team.
+      <h1 class="my-3 text-center" style="font-family: 'Days One', sans-serif; font-weight: 400; font-style: normal; font-size: 60px;">
+        Choisis ta competition. <i class="fas fa-trophy" style="margin-right: 10px;"></i>
       </h1>
     </div>
   </div>
 </div>
 
 <div class="container index-page">
-
-  <div class="main-content">
+  <div class="row main-content">
+    <!-- Search bar and cards -->
     <div class="sidebar">
-      <!-- Search bar -->
-      <div class="search-bar">
-        <input type="text" placeholder="Recherche par ville ou compétition ou par sport">
-        <button><i class="fas fa-arrow-right"></i></button>
+      <div class="search-bar mb-4">
+        <input type="text" class="form-control" placeholder="Recherche par ville ou compétition ou par sport">
+        <button class="btn btn-primary"><i class="fas fa-arrow-right"></i></button>
       </div>
 
-      <!-- Cards -->
-      <div class="wrapper">
-        <%= link_to competition_path(1), class: 'clash-card-link' do %> <!-- Utiliser un ID factice pour test -->
-          <div class="clash-card archer">
-            <div class="clash-card__image clash-card__image--archer">
-              <img src="<%= asset_path('ping pong vector image_card homepage.png') %>" alt="Ping pong" />
-            </div>
-            <div class="clash-card__level clash-card__level--archer">Ping Pong</div>
-            <div class="clash-card__unit-name">Ping Tour</div>
-            <div class="clash-card__unit-description">
-              <p><i class="fa-solid fa-location-dot"></i> PARIS </p>
-              <p><strong class="clash-card__level clash-card__level--archer">10 teams constituées</strong> <br>
-              The Archer is a female warrior with sharp eyes. She wears a short, light green dress, a hooded cape.</p>
-            </div>
-            <div class="clash-card__unit-stats clash-card__unit-stats--archer clearfix">
-              <div class="one-third">
-                <div class="stat">24.07.24</div>
-                <div class="stat-value">Date</div>
-              </div>
-              <div class="one-third">
-                <div class="stat">06:00</div>
-                <div class="stat-value">Heure</div>
-              </div>
-              <div class="one-third no-border">
-                <div class="stat">300€</div>
-                <div class="stat-value">Coût</div>
-              </div>
-            </div>
-          </div> <!-- end clash-card archer-->
+      <div class="slide-container">
+        <% @competitions.each_with_index do |competition, index| %>
+          <div class="wrapper">
+            <%= link_to competition_path(competition), class: 'clash-card-link' do %>
+              <div class="clash-card <%= card_class(index) %>">
+                <div class="clash-card__image <%= image_class(index) %>">
+                  <%= image_tag competition.image, alt: competition.name %>
+                </div>
+                <div class="clash-card__level <%= level_class(index) %>"><%= competition.sport.name %></div>
+                <div class="clash-card__unit-name"><%= competition.name %></div>
+                <div class="clash-card__unit-description">
+                  <p><i class="fa-solid fa-location-dot"></i> <%= competition.city %> </p>
+                  <p><strong class="clash-card__level <%= level_class(index) %>"><%= competition.teams.count %> teams constituées</strong> <br>
+                  <%= competition.description %></p>
+                </div>
+                <div class="clash-card__unit-stats <%= stats_class(index) %> clearfix">
+                  <div class="one-third">
+                    <div class="stat"><%= competition.date.strftime("%d.%m.%y") %></div>
+                    <div class="stat-value">Date</div>
+                  </div>
+                  <div class="one-third">
+                    <div class="stat"><%= competition.time.strftime("%H:%M") %></div>
+                    <div class="stat-value">Heure</div>
+                  </div>
+                  <div class="one-third no-border">
+                    <div class="stat"><%= formatted_cost(competition.cost) %></div>
+                    <div class="stat-value">Coût</div>
+                  </div>
+                </div>
+              </div> <!-- end clash-card -->
+            <% end %>
+          </div> <!-- end wrapper -->
         <% end %>
-      </div> <!-- end wrapper -->
+      </div> <!-- end slide-container -->
+    </div> <!-- end sidebar -->
 
-      <div class="wrapper">
-        <%= link_to competition_path(2), class: 'clash-card-link' do %> <!-- Utiliser un ID factice pour test -->
-          <div class="clash-card goblin">
-            <div class="clash-card__image clash-card__image--goblin">
-              <img src="<%= asset_path('tennis girl vector_card homepage.png') %>" alt="goblin" />
-            </div>
-            <div class="clash-card__level clash-card__level--goblin">Tennis</div>
-            <div class="clash-card__unit-name">Roland Parios</div>
-            <div class="clash-card__unit-description">
-              <p><i class="fa-solid fa-location-dot"></i> BORDEAUX </p>
-              <p><strong class="clash-card__level clash-card__level--goblin">8 teams constituées</strong> <br>
-              These pesky little creatures only have eyes for one thing: LOOT! It is the most amazing tournament</p>
-            </div>
-            <div class="clash-card__unit-stats clash-card__unit-stats--goblin clearfix">
-              <div class="one-third">
-                <div class="stat">30.08.24</div>
-                <div class="stat-value">Date</div>
-              </div>
-              <div class="one-third">
-                <div class="stat">09:00</div>
-                <div class="stat-value">Heure</div>
-              </div>
-              <div class="one-third no-border">
-                <div class="stat">100€</div>
-                <div class="stat-value">Coût</div>
-              </div>
-            </div>
-          </div> <!-- end clash-card goblin-->
-        <% end %>
-      </div> <!-- end wrapper -->
-    </div>
-
+    <!-- Map -->
     <div class="content">
-      <div class="map-column">
-        <!-- Carte Mapbox sera ajoutée ici plus tard -->
-        <%# <img src="<%= asset_path('01-03_City_map2v_generated.jpg') %>
-      </div> <!-- end map-column -->
-    </div>
+      <div id="map" class="map-column"></div>
+    </div> <!-- end content -->
   </div> <!-- end main-content -->
 </div> <!-- end container -->
+
+<!-- Footer in the layout -->
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

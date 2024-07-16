@@ -1,4 +1,5 @@
 require 'faker'
+require 'open-uri'
 
 # Clear existing data
 Message.destroy_all
@@ -21,7 +22,7 @@ sports = {
   tennis: Sport.create!(name: "Tennis", created_at: Time.now, updated_at: Time.now),
   badminton: Sport.create!(name: "Badminton", created_at: Time.now, updated_at: Time.now),
   padel: Sport.create!(name: "Padel", created_at: Time.now, updated_at: Time.now),
-  tennis_de_table: Sport.create!(name: "Tennis de table", created_at: Time.now, updated_at: Time.now)
+  ping_pong: Sport.create!(name: "Ping-pong", created_at: Time.now, updated_at: Time.now)
 }
 
 # Possible palmares values
@@ -64,37 +65,33 @@ sports_with_competitions = [
   {
     name: "Tennis",
     competitions: [
-      { name: "Roland-Garros", city: "Paris", address: "2 Avenue Gordon Bennett, 75016 Paris" },
-      { name: "Open de France", city: "Lyon", address: "155 Boulevard Stalingrad, 69006 Lyon" },
-      { name: "Masters de Paris", city: "Paris", address: "8 Boulevard de Bercy, 75012 Paris" },
-      { name: "Tournoi de Printemps", city: "Montpellier", address: "22 Rue, Montpellier" }
+      { name: "Roland-Parios", city: "Paris", address: "2 Avenue Gordon Bennett, 75016 Paris", date: Date.new(2024, 5, 30), time: Time.new(2024, 5, 30, 14, 0, 0), cost: 100.0, image_path: "tennis girl vector_card homepage.png", description: "Le prestigieux tournoi Roland Parios du calendrier tennistique.", number_of_teams: 13 },
+      { name: "France Open", city: "Lyon", address: "155 Boulevard Stalingrad, 69006 Lyon", date: Date.new(2024, 6, 15), time: Time.new(2024, 6, 15, 10, 0, 0), cost: 50.0, image_path: "tennis girl vector_card homepage.png", description: "Un tournoi de tennis excitant à Lyon, réunissant les meilleurs talents.", number_of_teams: 6 },
+      { name: "Paris Masters", city: "Paris", address: "8 Boulevard de Bercy, 75012 Paris", date: Date.new(2024, 7, 10), time: Time.new(2024, 7, 10, 16, 0, 0), cost: 75.0, image_path: "tennis girl vector_card homepage.png", description: "Le prestigieux Paris Masters, connu pour ses matchs compétitifs.", number_of_teams: 7 }
     ]
   },
   {
     name: "Padel",
     competitions: [
-      { name: "Coupe Padel Paris", city: "Paris", address: "10 Rue des Meuniers, 75012 Paris" },
-      { name: "Open de Padel Lyon", city: "Lyon", address: "66 Avenue Paul Santy, 69008 Lyon" },
-      { name: "Marseille Padel Open", city: "Marseille", address: "28 Boulevard de Pont de Vivaux, 13010 Marseille" },
-      { name: "Montpellier Padel Challenge", city: "Montpellier", address: "19 Rue Paul Rimbaud, 34000 Montpellier" }
+      { name: "Padel Cup", city: "Lyon", address: "66 Avenue Paul Santy, 69008 Lyon", date: Date.new(2024, 8, 20), time: Time.new(2024, 8, 20, 11, 0, 0), cost: 60.0, image_path: "Padel man vector_card homepage.png", description: "La passionnante Padel Cup à Lyon, attirant des joueurs du monde entier.", number_of_teams: 15 },
+      { name: "Padel Paris", city: "Paris", address: "10 Rue des Meuniers, 75012 Paris", date: Date.new(2024, 9, 15), time: Time.new(2024, 9, 15, 12, 0, 0), cost: 55.0, image_path: "Padel man vector_card homepage.png", description: "Le palpitant tournoi de Padel Lyon, un événement incontournable pour les passionnés.", number_of_teams: 6 },
+      { name: "Marseille Open", city: "Marseille", address: "28 Boulevard de Pont de Vivaux, 13010 Marseille", date: Date.new(2024, 10, 10), time: Time.new(2024, 10, 10, 14, 0, 0), cost: 65.0, image_path: "Padel man vector_card homepage.png", description: "Le défiant Open de Marseille, mettant en vedette des matchs de Padel de haut niveau.", number_of_teams: 7 }
     ]
   },
   {
-    name: "Tennis de table",
+    name: "Ping-pong",
     competitions: [
-      { name: "Championnat de Paris", city: "Paris", address: "5 Rue Léo Delibes, 75016 Paris" },
-      { name: "Lyon Ping Open", city: "Lyon", address: "10 Rue Robert, 69006 Lyon" },
-      { name: "Marseille Table Tennis Cup", city: "Marseille", address: "15 Avenue du Prado, 13006 Marseille" },
-      { name: "Montpellier Ping Challenge", city: "Montpellier", address: "39 Rue Saint-Firmin, 34000 Montpellier" }
+      { name: "Ping Tour", city: "Marseille", address: "40 Boulevard Charles Livon, 13007 Marseille", date: Date.new(2024, 10, 5), time: Time.new(2024, 10, 5, 13, 0, 0), cost: 40.0, image_path: "ping pong vector image_card homepage.png", description: "Le tournoi ultime de Ping-pong à Marseille, connu pour ses matchs intenses.", number_of_teams: 14 },
+      { name: "Spin Lyon", city: "Lyon", address: "10 Rue Robert, 69006 Lyon", date: Date.new(2024, 11, 10), time: Time.new(2024, 11, 10, 14, 0, 0), cost: 30.0, image_path: "ping pong vector image_card homepage.png", description: "Le passionnant tournoi Spin Lyon, réunissant les meilleurs joueurs.", number_of_teams: 5 },
+      { name: "Marseille Clash", city: "Marseille", address: "15 Avenue du Prado, 13006 Marseille", date: Date.new(2024, 12, 15), time: Time.new(2024, 12, 15, 9, 0, 0), cost: 35.0, image_path: "ping pong vector image_card homepage.png", description: "Le tournoi compétitif Marseille Clash, attirant des joueurs de tout le pays.", number_of_teams: 7 }
     ]
   },
   {
     name: "Badminton",
     competitions: [
-      { name: "Championnat de France de Badminton", city: "Paris", address: "25 Avenue Pierre de Coubertin, 75013 Paris" },
-      { name: "Lyon Badminton Cup", city: "Lyon", address: "8 Avenue Jean Mermoz, 69008 Lyon" },
-      { name: "Marseille Badminton Festival", city: "Marseille", address: "40 Boulevard Charles Livon, 13007 Marseille" },
-      { name: "Montpellier Badminton Challenge", city: "Montpellier", address: "111 Place Vauban, 34000 Montpellier" }
+      { name: "France Bad", city: "Paris", address: "25 Avenue Pierre de Coubertin, 75013 Paris", date: Date.new(2024, 8, 25), time: Time.new(2024, 8, 25, 10, 0, 0), cost: 45.0, image_path: "ping pong vector image_card homepage.png", description: "Le prestigieux tournoi France Bad, mettant en vedette les meilleurs du sport.", number_of_teams: 9 },
+      { name: "Lyon Bad", city: "Lyon", address: "8 Avenue Jean Mermoz, 69008 Lyon", date: Date.new(2024, 9, 20), time: Time.new(2024, 9, 20, 11, 0, 0), cost: 50.0, image_path: "ping pong vector image_card homepage.png", description: "Le passionnant tournoi Lyon Bad, un événement majeur pour les fans de badminton.", number_of_teams: 7 },
+      { name: "Paris Fest", city: "Paris", address: "5 Rue Léo Delibes, 75016 Paris", date: Date.new(2024, 10, 15), time: Time.new(2024, 10, 15, 13, 0, 0), cost: 55.0, image_path: "ping pong vector image_card homepage.png", description: "Le festif tournoi de badminton Paris Fest, célébré pour son atmosphère vibrante.", number_of_teams: 8 }
     ]
   }
 ]
@@ -113,12 +110,20 @@ sports_with_competitions.each do |sport_data|
     competition = Competition.create!(
       sport: sport,
       name: competition_data[:name],
-      number_of_teams: rand(3..6), # Random number of teams between 3 to 6
-      date_time: Faker::Time.forward(days: 30),
+      number_of_teams: competition_data[:number_of_teams],
       address: competition_data[:address],
       created_at: Time.now,
-      updated_at: Time.now
+      updated_at: Time.now,
+      date: competition_data[:date],
+      time: competition_data[:time],
+      cost: competition_data[:cost],
+      description: competition_data[:description],
+      city: competition_data[:city]
     )
+
+    # Attach image using ActiveStorage
+    file_path = Rails.root.join("app/assets/images/#{competition_data[:image_path]}")
+    competition.image.attach(io: File.open(file_path), filename: competition_data[:image_path])
 
     puts "Competition created: #{competition.name}"
 

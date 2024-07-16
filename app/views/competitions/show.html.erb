@@ -5,7 +5,7 @@
         <h2><%= @competition.name %></h2>
         <p><strong>Sport:</strong> <%= @competition.sport.name %></p>
         <p><strong>Nombre d'équipes:</strong> <%= @competition.teams.count %></p>
-        <p><strong>Date & heure:</strong> <%= @competition.date_time.strftime('%d %B %Y à %H:%M') %></p>
+        <p><strong>Date & heure:</strong> <%= @competition.date.strftime('%d %B %Y') %> à <%= @competition.time.strftime('%H:%M') %></p>
         <p><strong>Adresse:</strong> <%= @competition.address %></p>
         <%= link_to "Retour à la liste des compétitions", competitions_path, class: "btn btn-primary" %>
       </div>

@@ -1,108 +1,32 @@
-<div class="slide-container">
+<% @top_competitions.each_with_index do |competition, index| %>
   <div class="wrapper">
-    <%= link_to competition_path(53), class: 'clash-card-link' do %>
-      <div class="clash-card barbarian">
-        <div class="clash-card__image clash-card__image--barbarian">
-          <img src="<%= asset_path('Padel man vector_card homepage.png') %>" alt="Padel"/>
+    <%= link_to competition_path(competition), class: 'clash-card-link' do %>
+      <div class="clash-card <%= card_class(index) %>">
+        <div class="clash-card__image <%= image_class(index) %>">
+          <%= image_tag competition.image, alt: competition.name %>
         </div>
-        <div class="clash-card__level clash-card__level--barbarian">Padel</div>
-        <div class="clash-card__unit-name">Pad's guys</div>
+        <div class="clash-card__level <%= level_class(index) %>"><%= competition.sport.name %></div>
+        <div class="clash-card__unit-name"><%= competition.name %></div>
         <div class="clash-card__unit-description">
-          <p><i class="fa-solid fa-location-dot"></i> LYON </p>
-          <p><strong class="clash-card__level clash-card__level--barbarian">15 teams constituées</strong> <br>
-          The Barbarian is a kilt-clad Scottish warrior with an angry, battle-ready expression, hungry for destruction.</p>
+          <p><i class="fa-solid fa-location-dot"></i> <%= competition.city %> </p>
+          <p><strong class="clash-card__level <%= level_class(index) %>"><%= competition.teams.count %> teams constituées</strong> <br>
+          <%= competition.description %></p>
         </div>
-
-        <div class="clash-card__unit-stats clash-card__unit-stats--barbarian clearfix">
+        <div class="clash-card__unit-stats <%= stats_class(index) %> clearfix">
           <div class="one-third">
-            <div class="stat">20.10.24</div>
+            <div class="stat"><%= competition.date.strftime("%d.%m.%y") %></div>
             <div class="stat-value">Date</div>
           </div>
-
           <div class="one-third">
-            <div class="stat">16:00</div>
+            <div class="stat"><%= competition.time.strftime("%H:%M") %></div>
             <div class="stat-value">Heure</div>
           </div>
-
           <div class="one-third no-border">
-            <div class="stat">150€</div>
-            <div class="stat-value">Coût</div>
-          </div>
-
-        </div>
-
-      </div> <!-- end clash-card barbarian-->
-    <% end %>
-  </div> <!-- end wrapper -->
-
-  <div class="wrapper">
-    <%= link_to competition_path(50), class: 'clash-card-link' do %>
-      <div class="clash-card archer">
-        <div class="clash-card__image clash-card__image--archer">
-          <img src="<%= asset_path('ping pong vector image_card homepage.png') %>" alt="Ping pong" />
-        </div>
-        <div class="clash-card__level clash-card__level--archer">Ping Pong</div>
-        <div class="clash-card__unit-name">Ping Tour</div>
-        <div class="clash-card__unit-description">
-          <p><i class="fa-solid fa-location-dot"></i> PARIS </p>
-          <p><strong class="clash-card__level clash-card__level--archer">10 teams constituées</strong> <br>
-          The Archer is a female warrior with sharp eyes. She wears a short, light green dress, a hooded cape.</p>
-        </div>
-
-        <div class="clash-card__unit-stats clash-card__unit-stats--archer clearfix">
-          <div class="one-third">
-            <div class="stat">24.07.24</div>
-            <div class="stat-value">Date</div>
-          </div>
-
-          <div class="one-third">
-            <div class="stat">06:00</div>
-            <div class="stat-value">Heure</div>
-          </div>
-
-          <div class="one-third no-border">
-            <div class="stat">300€</div>
-            <div class="stat-value">Coût</div>
-          </div>
-
-        </div>
-
-      </div> <!-- end clash-card archer-->
-    <% end %>
-  </div> <!-- end wrapper -->
-
-  <div class="wrapper">
-    <%= link_to competition_path(49), class: 'clash-card-link' do %>
-      <div class="clash-card goblin">
-        <div class="clash-card__image clash-card__image--goblin">
-          <img src="<%= asset_path('tennis girl vector_card homepage.png') %>" alt="goblin" />
-        </div>
-        <div class="clash-card__level clash-card__level--goblin">Tennis</div>
-        <div class="clash-card__unit-name">Roland Parios</div>
-        <div class="clash-card__unit-description">
-          <p><i class="fa-solid fa-location-dot"></i> BORDEAUX </p>
-          <p><strong class="clash-card__level clash-card__level--goblin">8 teams constituées</strong> <br>
-          These pesky little creatures only have eyes for one thing: LOOT! It is the most amazing tournament</p>
-        </div>
-
-        <div class="clash-card__unit-stats clash-card__unit-stats--goblin clearfix">
-          <div class="one-third">
-            <div class="stat">30.08.24</div>
-            <div class="stat-value">Date</div>
-          </div>
-
-          <div class="one-third">
-            <div class="stat">09:00</div>
-            <div class="stat-value">Heure</div>
-          </div>
-
-          <div class="one-third no-border">
-            <div class="stat">100€</div>
+            <div class="stat"><%= formatted_cost(competition.cost) %></div>
             <div class="stat-value">Coût</div>
           </div>
         </div>
-      </div> <!-- end clash-card goblin-->
+      </div> <!-- end clash-card -->
     <% end %>
   </div> <!-- end wrapper -->
-
-</div> <!-- end container -->
+<% end %>

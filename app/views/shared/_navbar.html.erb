@@ -1,34 +1,35 @@
 <!-- Navbar -->
-<% navbar_class = current_page?(root_path) ? 'navbar-lewagon navbar-custom' : 'navbar-lewagon' %>
-<div class="navbar navbar-expand-sm navbar-light <%= navbar_class %>">
-  <div class="container-fluid d-flex justify-content-center align-items-center custom-max-width">
+<div class="navbar navbar-expand-sm navbar-light">
+  <div class="container-fluid d-flex justify-content-end align-items-center custom-max-width">
     <%# <%= link_to root_path, class: "navbar-brand" do %>
       <%# <%= image_tag asset_path('LOGO AIR FIESTAS.png'), style:"width:100px;border-radius: 20px" %>
     <%# <% end %>
-    <div class="d-flex justify-content-center align-items-center">
+    <div class="d-flex justify-content-end align-items-center">
       <ul class="navbar-nav align-items-center">
         <% if user_signed_in? %>
           <li class="nav-item active">
-            <%= link_to "Home", root_path, class: "nav-link" %>
+            <%= link_to "Accueil", root_path, class: "nav-link" %>
           </li>
-          <li class="nav-item">
+          <%# <li class="nav-item">
             <%= link_to "Profil", user_path(current_user), class: "nav-link" %> <!-- Ajoutez le bon chemin ici -->
-          </li>
+          <%# </li> %>
           <li class="nav-item">
-            <%= link_to "Messages", chatrooms_path, class: "nav-link" %> <!-- Ajoutez le bon chemin ici -->
+            <%= link_to "Messagerie", chatrooms_path, class: "nav-link" %> <!-- Ajoutez le bon chemin ici -->
           </li>
-          <li class="nav-item">
+          <%# <li class="nav-item">
             <%= link_to "Ajouter une compétition", new_competition_path, class: "nav-link" %>
-          </li>
+          <%# </li> %>
           <li class="nav-item">
             <%= link_to "Notifications", root_path, class: "nav-link" %> <!-- Ajoutez le bon chemin ici -->
           </li>
           <li class="nav-item dropdown">
             <a href="#" class="avatar nav-link" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <%= image_tag "https://i.postimg.cc/zBMBVHnG/man.png", class: "avatar", alt: "dropdown menu" %>
+              <%= image_tag asset_path('Avatar.png'), class: "avatar", alt: "avatar profile image" %>
             </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <%= link_to "Mon profil", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %> <!-- Ajoutez le bon chemin ici -->
               <%= link_to "Se déconnecter", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %>
+
             </div>
           </li>
         <% else %>
