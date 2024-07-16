@@ -171,20 +171,21 @@ h1 {
 }
 
 .slide-container {
-  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
   width: 100%;
-  text-align: center;
+  margin-top: 30px;
 }
 
 .wrapper {
-  padding-top: 40px;
+  // flex: 1 1 calc(33.333% - 40px);
+  // max-width: calc(33.333% - 40px);
   padding-bottom: 40px;
-  display: inline-block;
-  margin: 40px $card-margin;
-
-  &:focus {
-    outline: 0;
-  }
+  padding-top: 40px;
+  margin: 20px;
+  box-sizing: border-box
 }
 
 .clash-card-link {
@@ -380,3 +381,17 @@ h1 {
 .intro {
   text-align: center;
 }
+
+.clash-card-link,
+.clash-card-link:hover,
+.clash-card-link:focus,
+.clash-card-link:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+// .clash-card-link * {
+//   color: inherit;
+//   text-decoration: none;
+// }
