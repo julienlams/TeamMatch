@@ -252,6 +252,18 @@ h1 {
   }
 }
 
+.clash-card__image--bad {
+  background-color: $blue;
+  img {
+    width: 350px;
+    height:250px;
+    position: absolute;
+    top: -70px;
+    left: 70px;
+    right: 80px;
+    overflow:visible;
+  }
+}
 .clash-card__level {
   text-transform: uppercase;
   font-size: 12px;
@@ -270,6 +282,10 @@ h1 {
 
 .clash-card__level--goblin {
   color: $yellow;
+}
+
+.clash-card__level--bad {
+  color: $blue;
 }
 
 .clash-card__unit-name {
@@ -309,6 +325,14 @@ h1 {
 
   .one-third {
     border-right: 1px solid darken($yellow, 6%);
+  }
+}
+
+.clash-card__unit-stats--bad {
+  background: $blue;
+
+  .one-third {
+    border-right: 1px solid darken($blue, 6%);
   }
 }
 

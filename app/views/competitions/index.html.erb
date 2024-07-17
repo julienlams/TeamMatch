@@ -1,10 +1,8 @@
-<h1 class="mt-5 yellow-gradient" style="font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-style: normal; font-size: 60px;">TOUTES NOS COMPETITIONS</h1>
-
 <!-- Banner -->
 <div class="mt-5 banner" style="height: 300px; background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.1)), url(<%= asset_path('banner_XL.jpg') %>);">
   <div class="container">
-    <div class="banner-text">
-      <h1 class="my-3 text-center" style="font-family: 'Days One', sans-serif; font-weight: 400; font-style: normal; font-size: 60px;">
+    <div class="banner-text text-center">
+      <h1 class="my-3" style="font-family: 'Days One', sans-serif; font-weight: 400; font-style: normal; font-size: 60px;">
         Choisis ta competition. <i class="fas fa-trophy" style="margin-right: 10px;"></i>
       </h1>
     </div>
@@ -13,58 +11,53 @@
 
 <div class="container index-page">
   <div class="row main-content">
-    <!-- Search bar and cards -->
-    <div class="sidebar">
-      <div class="search-bar mb-4">
-        <input type="text" class="form-control" placeholder="Recherche par ville ou compétition ou par sport">
-        <button class="btn btn-primary"><i class="fas fa-arrow-right"></i></button>
-      </div>
+    <div class="col-lg-8 col-md-6">
+      <!-- Search bar and cards -->
+      <div class="sidebar">
+        <div class="search-bar mb-4">
+          <input type="text" class="form-control" placeholder="Recherche par ville ou compétition ou par sport">
+          <button class="btn btn-primary"><i class="fas fa-arrow-right"></i></button>
+        </div>
 
-      <div class="slide-container">
-        <% @competitions.each_with_index do |competition, index| %>
-          <div class="wrapper">
-            <%= link_to competition_path(competition), class: 'clash-card-link' do %>
-              <div class="clash-card <%= card_class(index) %>">
-                <div class="clash-card__image <%= image_class(index) %>">
-                  <%= image_tag competition.image, alt: competition.name %>
-                </div>
-                <div class="clash-card__level <%= level_class(index) %>"><%= competition.sport.name %></div>
-                <div class="clash-card__unit-name"><%= competition.name %></div>
-                <div class="clash-card__unit-description">
-                  <p><i class="fa-solid fa-location-dot"></i> <%= competition.city %> </p>
-                  <p><strong class="clash-card__level <%= level_class(index) %>"><%= competition.teams.count %> teams constituées</strong> <br>
-                  <%= competition.description %></p>
-                </div>
-                <div class="clash-card__unit-stats <%= stats_class(index) %> clearfix">
-                  <div class="one-third">
-                    <div class="stat"><%= competition.date.strftime("%d.%m.%y") %></div>
-                    <div class="stat-value">Date</div>
+        <div class="slide-container row">
+          <% @competitions.each do |competition| %>
+            <div class="col-lg-4 col-md-6 wrapper">
+              <%= link_to competition_path(competition), class: 'clash-card-link' do %>
+                <div class="clash-card <%= card_class(competition.sport.name) %>">
+                  <div class="clash-card__image <%= image_class(competition.sport.name) %>">
+                    <%= image_tag competition.image, alt: competition.name %>
                   </div>
-                  <div class="one-third">
-                    <div class="stat"><%= competition.time.strftime("%H:%M") %></div>
-                    <div class="stat-value">Heure</div>
+                  <div class="clash-card__level <%= level_class(competition.sport.name) %>"><%= competition.sport.name %></div>
+                  <div class="clash-card__unit-name"><%= competition.name %></div>
+                  <div class="clash-card__unit-description">
+                    <p><i class="fa-solid fa-location-dot"></i> <%= competition.city %> </p>
+                    <p><strong class="clash-card__level <%= level_class(competition.sport.name) %>"><%= competition.teams.count %> teams constituées</strong></p>
                   </div>
-                  <div class="one-third no-border">
-                    <div class="stat"><%= formatted_cost(competition.cost) %></div>
-                    <div class="stat-value">Coût</div>
+                  <div class="clash-card__unit-stats <%= stats_class(competition.sport.name) %> clearfix">
+                    <div class="one-third">
+                      <div class="stat"><%= competition.date.strftime("%d.%m.%y") %></div>
+                      <div class="stat-value">Date</div>
+                    </div>
+                    <div class="one-third">
+                      <div class="stat"><%= competition.time.strftime("%H:%M") %></div>
+                      <div class="stat-value">Heure</div>
+                    </div>
+                    <div class="one-third no-border">
+                      <div class="stat"><%= formatted_cost(competition.cost) %></div>
+                      <div class="stat-value">Coût</div>
+                    </div>
                   </div>
-                </div>
-              </div> <!-- end clash-card -->
-            <% end %>
-          </div> <!-- end wrapper -->
-        <% end %>
-      </div> <!-- end slide-container -->
-    </div> <!-- end sidebar -->
+                </div> <!-- end clash-card -->
+              <% end %>
+            </div> <!-- end wrapper -->
+          <% end %>
+        </div> <!-- end slide-container -->
+      </div> <!-- end sidebar -->
+    </div> <!-- end of right div -->
 
-    <!-- Map -->
-    <div class="content">
-      <div id="map" class="map-column"></div>
-    </div> <!-- end content -->
+    <div class="col-lg-4 col-md-6 map-column">
+      <!-- Map -->
+      <div id="map"></div>
+    </div>
   </div> <!-- end main-content -->
 </div> <!-- end container -->
-
-<!-- Footer in the layout -->
-
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
