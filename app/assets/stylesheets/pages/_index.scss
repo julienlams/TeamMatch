@@ -21,14 +21,16 @@ body {
   .container {
     width: 100%;
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+    margin: 0 0 0 0px; /* Ajuster les marges gauche et droite */
+    // padding: 20px 0 20px 10px; /* Ajuster les paddings si nécessaire */
+    margin-right: 0px;
+    margin-left: 0px;
   }
 
   .main-content {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
+    margin-top: 0; /* Supprimer la marge supérieure pour aligner la carte avec la bannière */
   }
 
   .sidebar {
@@ -36,18 +38,6 @@ body {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    width: 65%; /* Couvrir les 2/3 de la largeur */
-    height: auto;
-  }
-
-  .content {
-    width: 33%; /* Couvrir 1/3 de la largeur */
-    height: 70vh; /* Faire en sorte que la hauteur soit égale à 100% de la vue */
-    padding: 0; /* Supprimer le padding */
-    margin: 0;
-    position: fixed; /* Positionner de manière fixe */
-    right: 0; /* Aligner à droite */
-    top: 0; /* Aligner en haut */
   }
 
   .search-bar {
@@ -80,51 +70,141 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    justify-content: space-between;
   }
 
   .wrapper {
-    flex: 1 1 calc(33.333% - 20px);
+    flex: 1 1 calc(33.333% - 20px); /* Ajuster pour 3 cartes par ligne */
     max-width: calc(33.333% - 20px);
     box-sizing: border-box;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding: 10px;
     margin: 0;
   }
 
   .map-column {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    background-image: url('https://media.istockphoto.com/id/1189064346/fr/photo/carte-de-la-ville-avec-pin-pointers-3d-image-de-rendu.jpg?s=612x612&w=0&k=20&c=9SRCp-3wwPBCdXEUp8M4gRYWm7d3GJ3MQpoZqgmZQCA=');
+    position: sticky;
+    top: 0;
+    width: 33%;
+    height: 100vh; /* La carte occupe toute la hauteur de la vue */
+    padding: 0; /* Supprimer le padding */
+    margin-right: 0; /* Supprimer la marge droite */
   }
 
   #map {
     height: 100%; /* Faire en sorte que la hauteur de la carte remplisse toute la div parente */
     width: 100%;
+    background-image: url('https://media.istockphoto.com/id/1189064346/fr/photo/carte-de-la-ville-avec-pin-pointers-3d-image-de-rendu.jpg?s=612x612&w=0&k=20&c=9SRCp-3wwPBCdXEUp8M4gRYWm7d3GJ3MQpoZqgmZQCA='); /* Image placeholder */
+    background-size: cover;
+    background-position: center;
   }
-}
 
-.container-profil {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 20px;
-}
+  .clash-card {
+    background: white;
+    width: 100%; /* Maintenir la largeur */
+    margin: $card-margin;
+    border-radius: $border-radius-size + 5;
+    position: relative;
+    text-align: center;
+    box-shadow: -1px 15px 30px -12px black;
+    z-index: 9999;
 
-.profile img {
-  border-radius: 50%;
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  margin-bottom: 10px;
-}
+    .clash-card__image {
+      position: relative;
+      height: 100px; /* Réduire la hauteur de l'image */
+      margin-bottom: 10px; /* Ajuster la marge inférieure */
+      border-top-left-radius: $border-radius-size;
+      border-top-right-radius: $border-radius-size;
 
-.search-bar {
-  display: flex;
-  // gap: 10px;
-}
+      img {
+        width: 150px; /* Réduire la largeur de l'image */
+        height: 100px; /* Réduire la hauteur de l'image */
+        position: absolute;
+        top: -20px; /* Ajuster la position pour centrer l'image */
+        left: 25px; /* Ajuster la position pour centrer l'image */
+        right: 25px; /* Ajuster la position pour centrer l'image */
+        overflow: visible;
+      }
+    }
 
-.clash-card {
-  margin-bottom: 20px;
+    .clash-card__image--barbarian {
+      background-color: $green; /* Tennis */
+    }
+
+    .clash-card__image--archer {
+      background-color: $pink; /* Padel */
+    }
+
+    .clash-card__image--goblin {
+      background-color: $yellow; /* Ping-pong */
+    }
+
+    .clash-card__image--bad {
+      background-color: $blue; /* Badminton */
+    }
+
+    .clash-card__level {
+      text-transform: uppercase;
+      font-size: 8px; /* Ajuster la taille de la police */
+      font-weight: 700;
+      margin-bottom: 3px; /* Ajuster la marge inférieure */
+    }
+
+    .clash-card__level--barbarian {
+      color: $green;
+    }
+
+    .clash-card__level--archer {
+      color: $pink;
+    }
+
+    .clash-card__level--goblin {
+      color: $yellow;
+    }
+
+    .clash-card__level--bad {
+      color: $blue;
+    }
+
+    .clash-card__unit-name {
+      font-size: 12px; /* Ajuster la taille de la police */
+      color: black;
+      font-weight: 900;
+      margin-bottom: 5px; /* Ajuster la marge inférieure */
+    }
+
+    .clash-card__unit-description {
+      padding: 5px; /* Réduire le padding */
+      margin-bottom: 5px; /* Ajuster la marge inférieure */
+      height: auto; /* Ajuster la hauteur */
+      overflow: hidden;
+    }
+
+    .clash-card__unit-stats {
+      color: white;
+      font-weight: 700;
+      border-bottom-left-radius: $border-radius-size;
+      border-bottom-right-radius: $border-radius-size;
+
+      .one-third {
+        width: 33%;
+        float: left;
+        padding: 10px 7.5px; /* Réduire le padding */
+      }
+
+      .stat {
+        position: relative;
+        font-size: 10px; /* Ajuster la taille de la police */
+        margin-bottom: 5px; /* Ajuster la marge inférieure */
+      }
+
+      .stat-value {
+        text-transform: uppercase;
+        font-weight: 400;
+        font-size: 8px; /* Ajuster la taille de la police */
+      }
+
+      .no-border {
+        border-right: none;
+      }
+    }
+  }
 }

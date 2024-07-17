@@ -1,18 +1,17 @@
 <% @top_competitions.each_with_index do |competition, index| %>
   <div class="wrapper">
     <%= link_to competition_path(competition), class: 'clash-card-link' do %>
-      <div class="clash-card <%= card_class(index) %>">
-        <div class="clash-card__image <%= image_class(index) %>">
+      <div class="clash-card <%= card_class(competition.sport.name) %>">
+        <div class="clash-card__image <%= image_class(competition.sport.name) %>">
           <%= image_tag competition.image, alt: competition.name %>
         </div>
-        <div class="clash-card__level <%= level_class(index) %>"><%= competition.sport.name %></div>
+        <div class="clash-card__level <%= level_class(competition.sport.name) %>"><%= competition.sport.name %></div>
         <div class="clash-card__unit-name"><%= competition.name %></div>
         <div class="clash-card__unit-description">
           <p><i class="fa-solid fa-location-dot"></i> <%= competition.city %> </p>
-          <p><strong class="clash-card__level <%= level_class(index) %>"><%= competition.teams.count %> teams constituées</strong> <br>
-          <%= competition.description %></p>
+          <p><strong class="clash-card__level <%= level_class(competition.sport.name) %>"><%= competition.teams.count %> teams constituées</strong></p>
         </div>
-        <div class="clash-card__unit-stats <%= stats_class(index) %> clearfix">
+        <div class="clash-card__unit-stats <%= stats_class(competition.sport.name) %> clearfix">
           <div class="one-third">
             <div class="stat"><%= competition.date.strftime("%d.%m.%y") %></div>
             <div class="stat-value">Date</div>
