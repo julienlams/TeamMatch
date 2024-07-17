@@ -5,7 +5,12 @@ class CompetitionsController < ApplicationController
   def index
     @competitions = Competition.all
     if params[:query].present?
-      @competitions = @competitions.where("address ILIKE ?", "%#{params[:query]}%")
+      sql_subquery = <<~SQL
+        competitions.address @@ :query
+        OR competitions.city @@ :query
+        OR competitions.name @@ :query
+      SQL
+      @competitions = @competitions.where(sql_subquery, query: "%#{params[:query]}%")
     end
   end
 

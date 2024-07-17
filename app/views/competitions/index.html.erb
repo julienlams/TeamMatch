@@ -15,8 +15,14 @@
       <!-- Search bar and cards -->
       <div class="sidebar">
         <div class="search-bar mb-4">
-          <input type="text" class="form-control" placeholder="Recherche par ville ou compétition ou par sport">
-          <button class="btn btn-primary"><i class="fas fa-arrow-right"></i></button>
+          <%= form_with url: competitions_path, method: :get, class: "d-flex" do %>
+      <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Recherche par ville ou compétition"
+        %>
+      <%= submit_tag "Go !", name: "", class: "btn btn-primary " %>
+    <% end %>
         </div>
 
         <div class="slide-container row">
