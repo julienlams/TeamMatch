@@ -12,10 +12,22 @@ User.destroy_all
 
 # Array of user data
 users_data = [
-  { email: "hello@hotmail.com", password: "123456", password_confirmation: "123456" },
-  { email: "hello1@hotmail.com", password: "123456", password_confirmation: "123456" },
-  { email: "hello2@hotmail.com", password: "123456", password_confirmation: "123456" }
+  { email: "hello@hotmail.com", password: "123456", password_confirmation: "123456", name: "Stephanie" },
+  { email: "hello1@hotmail.com", password: "123456", password_confirmation: "123456", name: "Arnaud" },
+  { email: "hello2@hotmail.com", password: "123456", password_confirmation: "123456", name: "Julien" }
 ]
+
+# Créer 30 autres utilisateurs avec des prénoms aléatoires
+30.times do
+  User.create!(
+    email: Faker::Internet.unique.email,
+    password: "password", # Vous pouvez changer le mot de passe selon vos besoins
+    password_confirmation: "password",
+    name: Faker::Name.first_name
+  )
+end
+
+puts "30 utilisateurs supplémentaires créés avec succès."
 
 # Create sports
 sports = {
@@ -38,6 +50,7 @@ palmares_values = [
 users_data.each do |user_data|
   user = User.create!(
     email: user_data[:email],
+    name: user_data[:name],
     password: user_data[:password],
     password_confirmation: user_data[:password_confirmation],
     created_at: Time.now,
