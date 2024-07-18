@@ -6,7 +6,7 @@ Message.destroy_all
 Chatroom.destroy_all
 Team.destroy_all
 Competition.destroy_all
-UserSport.destroy_all  # Ajouter cette ligne pour détruire les UserSport avant les Sports
+UserSport.destroy_all
 Sport.destroy_all
 User.destroy_all
 
@@ -59,13 +59,12 @@ users_data.each do |user_data|
 
   puts "User created with email: #{user.email}"
 
-  # Assign Tennis and Badminton with palmares and level to each user
   ['tennis', 'badminton'].each do |sport|
     UserSport.create!(
       user: user,
       sport: sports[sport.to_sym],
-      level: rand(1..5000), # Random level between 1 and 5000
-      palmares: palmares_values.sample, # Random palmares from the list
+      level: rand(1..5000),
+      palmares: palmares_values.sample,
       created_at: Time.now,
       updated_at: Time.now
     )
@@ -157,3 +156,8 @@ sports_with_competitions.each do |sport_data|
 end
 
 puts "Seed completed successfully."
+
+# Vérification des coordonnées géocodées
+Competition.all.each do |competition|
+  puts "#{competition.name}: #{competition.latitude}, #{competition.longitude}"
+end

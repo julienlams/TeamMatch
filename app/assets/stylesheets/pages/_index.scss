@@ -24,7 +24,7 @@ body {
     margin: 0 0 0 0px; /* Ajuster les marges gauche et droite */
     // padding: 20px 0 20px 10px; /* Ajuster les paddings si nécessaire */
     margin-right: 0px;
-    margin-left: 0px;
+    margin-left: 10px;
   }
 
   .main-content {
@@ -33,10 +33,11 @@ body {
     margin-top: 0; /* Supprimer la marge supérieure pour aligner la carte avec la bannière */
   }
 
+
   .sidebar {
-    background-color: #f7f7f7;
+    background-image: url('/assets/vecteezy_beautiful-blurred-vector-background_105252.jpg');
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 0px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   }
 
