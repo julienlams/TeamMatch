@@ -1,36 +1,62 @@
 <!-- app/views/competitions/show.html.erb -->
 <div class="container mt-4" data-controller="join-team">
   <div class="row">
+    <!-- Section principale -->
     <div class="col-md-9">
-      <div class="px-4">
-        <h2><%= @competition.name %></h2>
-        <p><strong>Sport:</strong> <%= @competition.sport.name %></p>
-        <p><strong>Nombre d'équipes:</strong> <%= @competition.teams.count %></p>
-        <p><strong>Date & heure:</strong> <%= @competition.date.strftime('%d %B %Y') %> à <%= @competition.time.strftime('%H:%M') %></p>
-        <p><strong>Adresse:</strong> <%= @competition.address %></p>
-        <%= link_to "Retour à la liste des compétitions", competitions_path, class: "btn btn-primary" %>
-      </div>
+      <div class="bg-light p-4 rounded shadow-sm">
+        <% sport_color = case @competition.sport.name
+                          when 'Badminton'
+                            '#176cc7'
+                          when 'Tennis'
+                            '#82bb30'
+                          when 'Padel'
+                            '#ee5487'
+                          when 'Ping-pong'
+                            '#f69019'
+                          else
+                            '#000000' # couleur par défaut ou autre traitement
+                          end %>
 
-      <div class="mt-4 px-4">
-        <h3>Équipes inscrites</h3>
-        <ul class="list-unstyled">
-          <% @competition.teams.order(created_at: :desc).each do |team| %>
-            <li class="mb-3">
-              <strong>Nom de l'équipe:</strong> <%= link_to team.name, user_path(team.owner_id) %><br>
-              <strong>Nombre maximum de participants:</strong> <%= link_to team.number_max_of_participants, user_path(team.owner_id) %><br>
-              <button class="btn btn-primary" data-action="click->join-team#openModal" data-team-id="<%= team.id %>" data-team-chatroom-url="<%= chatroom_path(team.chatroom) %>">Rejoindre</button>
-            </li>
-          <% end %>
-        </ul>
+        <h1 class="mb-5" style="color: <%= sport_color %>;"><%= @competition.name %></h2>
+        <p><strong>Sport :</strong> <%= @competition.sport.name %></p>
+        <p><strong>Nombre d'équipes :</strong> <%= @competition.teams.count %></p>
+        <p><strong>Date:</strong> <%= @competition.date.strftime('%d %B %Y') %></p>
+        <p><strong>Heure:</strong> <%= @competition.time.strftime('%Hh%M') %></p>
+        <p><strong>Adresse :</strong> <%= @competition.address %></p>
+        <%= link_to "Retour à la liste des compétitions", competitions_path, class: "btn btn-outline-primary mt-3 mb-2", style: "color: #{sport_color}; border-color: #{sport_color};" %>
       </div>
     </div>
 
-    <div class="col-md-3">
-      <div class="mt-4 px-4">
+<div class="col-md-9">
+  <div class="mt-4 p-4 rounded shadow-sm rounded bg-light">
+    <h3 class="text-secondary mb-4">Équipes inscrites</h3>
+    <div class="row">
+      <% @competition.teams.order(created_at: :desc).each do |team| %>
+        <div class="col-md-4 mb-4">
+          <%= link_to user_path(team.owner_id), class: 'text-decoration-none' do %>
+            <div class='h-100'>
+              <div class="card-body" style="background-color:#FFFFFF;border: 1px solid <%= sport_color %>;">
+                <h5 class="card-title" style="color: <%= sport_color %>;"><%= team.name %></h5><br>
+                <p class="card-text"><strong class="text-dark">Nombre maximum de participants :</strong> <span class="text-muted"><%= team.number_max_of_participants %></span></p><br>
+                <p class="card-text"><strong class="text-dark">Créateur de l'équipe :</strong> <span class="text-muted"><%= User.find(team.owner_id).name %></span></p>
+                <button class="btn btn-primary btn-sm mt-3 mb-2 w-100" style="background-color: <%= sport_color %>; border-color: <%= sport_color %>;" data-action="click->join-team#openModal" data-team-id="<%= team.id %>" data-team-chatroom-url="<%= chatroom_path(team.chatroom) %>">Rejoindre</button>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+    <!-- Section pour ajouter une nouvelle équipe -->
+    <div class="col-md-3 mt-4">
+      <div class="bg-light p-4 rounded shadow-sm">
+        <h4 class="text-success">Ajouter une équipe</h4>
         <%= simple_form_for([@competition, @competition.teams.build], url: competition_teams_path(@competition), html: { class: 'form-horizontal' }) do |f| %>
           <% if @team.errors.any? %>
-            <div id="error_explanation">
-              <h2><%= pluralize(@team.errors.count, "error") %> prohibited this team from being saved:</h2>
+            <div id="error_explanation" class="alert alert-danger">
+              <h5><%= pluralize(@team.errors.count, "erreur") %> ont empêché l'enregistrement de l'équipe :</h5>
               <ul>
                 <% @team.errors.full_messages.each do |msg| %>
                   <li><%= msg %></li>
@@ -46,7 +72,7 @@
             <%= f.input :number_max_of_participants, label: 'Nombre maximum de participants', input_html: { class: 'form-control', min: 0 } %>
           </div>
           <div class="form-group">
-            <%= f.submit 'Ajouter l\'équipe', class: 'btn btn-success btn-block' %>
+            <%= f.submit 'Ajouter l\'équipe', class: 'btn btn-success btn-block', style: "background-color: #{sport_color}; border-color: #{sport_color};" %>
           </div>
         <% end %>
       </div>
