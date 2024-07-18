@@ -57,13 +57,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_18_125045) do
     t.float "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
     t.text "description"
     t.bigint "user_id"
     t.decimal "cost"
     t.date "date"
     t.time "time"
     t.string "city"
-    t.string "name"
     t.string "image_url"
     t.index ["sport_id"], name: "index_competitions_on_sport_id"
   end
