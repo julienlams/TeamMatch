@@ -1,4 +1,5 @@
-<div class="container mt-4">
+<!-- app/views/competitions/show.html.erb -->
+<div class="container mt-4" data-controller="join-team">
   <div class="row">
     <!-- Section principale -->
     <div class="col-md-9">
@@ -26,27 +27,27 @@
       </div>
     </div>
 
-    <div class="col-md-9">
-      <div class="mt-4 p-4 rounded shadow-sm rounded bg-light">
-        <h3 class="text-secondary mb-4">Équipes inscrites</h3>
-        <div class="row">
-          <% @competition.teams.order(created_at: :desc).each do |team| %>
-            <div class="col-md-4 mb-4">
-              <%= link_to user_path(team.owner_id), class: 'text-decoration-none' do %>
-                <div class='h-100'>
-                  <div class="card-body" style="background-color:#FFFFFF;border: 1px solid <%= sport_color %>;">
-                    <h5 class="card-title" style="color: <%= sport_color %>;"><%= team.name %></h5><br>
-                    <p class="card-text"><strong class="text-dark">Nombre maximum de participants :</strong> <span class="text-muted"><%= team.number_max_of_participants %></span></p><br>
-                    <p class="card-text"><strong class="text-dark">Créateur de l'équipe :</strong> <span class="text-muted"><%= User.find(team.owner_id).name %></span></p>
-                    <%= link_to "Rejoindre l'équipe", chatroom_path(team.chatroom), class: 'btn btn-primary btn-sm mt-3 mb-2 w-100', style: "background-color: #{sport_color}; border-color: #{sport_color};" %>
-                  </div>
-                </div>
-              <% end %>
+<div class="col-md-9">
+  <div class="mt-4 p-4 rounded shadow-sm rounded bg-light">
+    <h3 class="text-secondary mb-4">Équipes inscrites</h3>
+    <div class="row">
+      <% @competition.teams.order(created_at: :desc).each do |team| %>
+        <div class="col-md-4 mb-4">
+          <%= link_to user_path(team.owner_id), class: 'text-decoration-none' do %>
+            <div class='h-100'>
+              <div class="card-body" style="background-color:#FFFFFF;border: 1px solid <%= sport_color %>;">
+                <h5 class="card-title" style="color: <%= sport_color %>;"><%= team.name %></h5><br>
+                <p class="card-text"><strong class="text-dark">Nombre maximum de participants :</strong> <span class="text-muted"><%= team.number_max_of_participants %></span></p><br>
+                <p class="card-text"><strong class="text-dark">Créateur de l'équipe :</strong> <span class="text-muted"><%= User.find(team.owner_id).name %></span></p>
+                <button class="btn btn-primary btn-sm mt-3 mb-2 w-100" style="background-color: <%= sport_color %>; border-color: <%= sport_color %>;" data-action="click->join-team#openModal" data-team-id="<%= team.id %>" data-team-chatroom-url="<%= chatroom_path(team.chatroom) %>">Rejoindre</button>
+              </div>
             </div>
           <% end %>
         </div>
-      </div>
+      <% end %>
     </div>
+  </div>
+</div>
 
     <!-- Section pour ajouter une nouvelle équipe -->
     <div class="col-md-3 mt-4">
@@ -74,6 +75,20 @@
             <%= f.submit 'Ajouter l\'équipe', class: 'btn btn-success btn-block', style: "background-color: #{sport_color}; border-color: #{sport_color};" %>
           </div>
         <% end %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modale pour rejoindre une équipe -->
+  <div class="modal" data-join-team-target="modal">
+    <div class="modal-background" data-action="click->join-team#close"></div>
+    <div class="modal-content">
+      <button class="modal-close is-large" aria-label="close" data-action="click->join-team#close">&times;</button>
+      <div class="modal-body">
+        <h3>Bienvenue dans la team !</h3>
+        <p>Nous sommes ravis de vous avoir avec nous. Que l'aventure commence !</p>
+        <button class="btn btn-secondary" data-action="click->join-team#close">Retour aux équipes</button>
+        <button class="btn btn-primary" data-action="click->join-team#goToChatroom">Discuter avec mes équipiers</button>
       </div>
     </div>
   </div>
