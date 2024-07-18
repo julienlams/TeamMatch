@@ -4,10 +4,22 @@ class CompetitionsController < ApplicationController
 
   def index
     @competitions = Competition.all
+
+    # The `geocoded` scope filters only competitions with coordinates
+    @markers = @competitions.geocoded.map do |competition|
+      {
+        lat: competition.latitude,
+        lng: competition.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: {competition: competition}),
+        marker_html: render_to_string(partial: "marker", locals: {competition: competition})
+      }
+    end
+
     if params[:query].present?
       @competitions = @competitions.where("address ILIKE ?", "%#{params[:query]}%")
     end
   end
+
 
   def show
     @competition = Competition.find(params[:id])
