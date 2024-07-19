@@ -1,35 +1,29 @@
 <!-- Navbar -->
-<div class="navbar navbar-expand-sm navbar-light">
-  <div class="container-fluid d-flex justify-content-end align-items-center custom-max-width">
-    <%# <%= link_to root_path, class: "navbar-brand" do %>
-      <%# <%= image_tag asset_path('LOGO AIR FIESTAS.png'), style:"width:100px;border-radius: 20px" %>
-    <%# <% end %>
-    <div class="d-flex justify-content-end align-items-center">
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <div class="container-fluid d-flex justify-content-between align-items-center custom-max-width", style="margin-top:0px">
+    <%= link_to root_path, class: "navbar-brand" do %>
+      <%= image_tag asset_path('Logo_TeamMatch.png') %>
+    <% end %>
+
+    <div class="d-flex justify-content-end align-items-center flex-grow-1">
       <ul class="navbar-nav align-items-center">
         <% if user_signed_in? %>
           <li class="nav-item active">
             <%= link_to "Accueil", root_path, class: "nav-link" %>
           </li>
-          <%# <li class="nav-item">
-            <%= link_to "Profil", user_path(current_user), class: "nav-link" %> <!-- Ajoutez le bon chemin ici -->
-          <%# </li> %>
           <li class="nav-item">
-            <%= link_to "Messagerie", chatrooms_path, class: "nav-link" %> <!-- Ajoutez le bon chemin ici -->
+            <%= link_to "Messagerie", chatrooms_path, class: "nav-link" %>
           </li>
-          <%# <li class="nav-item">
-            <%= link_to "Ajouter une compétition", new_competition_path, class: "nav-link" %>
-          <%# </li> %>
           <li class="nav-item">
-            <%= link_to "Notifications", root_path, class: "nav-link" %> <!-- Ajoutez le bon chemin ici -->
+            <%= link_to "Notifications", root_path, class: "nav-link" %>
           </li>
           <li class="nav-item dropdown">
-            <a href="#" class="avatar nav-link" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <%= image_tag asset_path('Avatar.png'), class: "avatar", alt: "avatar profile image" %>
             </a>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Mon profil", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %> <!-- Ajoutez le bon chemin ici -->
+              <%= link_to "Mon profil", user_path(current_user), class: "dropdown-item" %>
               <%= link_to "Se déconnecter", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %>
-
             </div>
           </li>
         <% else %>

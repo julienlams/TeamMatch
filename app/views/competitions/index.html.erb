@@ -1,22 +1,21 @@
-<h1 class="mt-5 yellow-gradient" style="font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-style: normal; font-size: 60px;">
-  TOUTES NOS COMPETITIONS 🎉
-</h1>
+<div class = "competition-index">
+  <h1 class="mt-5 yellow-gradient" style="font-family: 'Bebas Neue', sans-serif; font-weight: 400; font-style: normal; font-size: 60px;">
+    TOUTES NOS COMPETITIONS 🎉
+  </h1>
 
-<!-- Banner -->
-<div class="mt-5 banner" style="height: 300px; background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.1)), url(<%= asset_path('banner_XL.jpg') %>);">
-  <div class="container">
-    <div class="banner-text text-center">
-      <h1 class="my-3" style="font-family: 'Days One', sans-serif; font-weight: 400; font-style: normal; font-size: 60px;">
-        Choisis ta compétition. <i class="fas fa-trophy" style="margin-right: 10px; justify-content-center"></i>
-      </h1>
-    </div>
+  <!-- Banner -->
+  <div class="my-5 banner-competitions" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.1)), url(<%= asset_path('index_banner.jpg') %>);">
+
+    <h1>
+      Choisis ta compétition. <i class="fas fa-trophy" style="margin-right: 10px"></i>
+    </h1>
   </div>
-</div>
 
-<div class="container index-page">
-  <div class="row main-content">
-    <div class="col-lg-8 col-md-6">
-      <!-- Search bar and cards -->
+
+  <div class="index-page">
+    <div class="main-container">
+
+        <!-- Search bar and cards -->
       <div class="sidebar">
         <div class="search-bar mb-4">
           <input type="text" class="form-control" placeholder="Recherche par ville ou compétition ou par sport">
@@ -57,15 +56,17 @@
           <% end %>
         </div> <!-- end slide-container -->
       </div> <!-- end sidebar -->
-    </div> <!-- end of right div -->
 
-    <div class="col-lg-4 col-md-6 map-column">
+
+
       <!-- Map -->
-      <div id="map" style="width: 100%; height: 600px;"
+      <div id="map"
         data-controller="map"
         data-map-markers-value="<%= @markers.to_json %>"
         data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
       </div>
-    </div>
-  </div> <!-- end main-content -->
-</div> <!-- end container -->
+
+    </div> <!-- end main-content -->
+  </div> <!-- end container -->
+
+</div>
