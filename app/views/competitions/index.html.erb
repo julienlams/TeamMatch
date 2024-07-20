@@ -16,17 +16,13 @@
     <div class="main-container">
 
         <!-- Search bar and cards -->
-      <div class="sidebar">
-        <div class="search-bar mb-4">
-          <%= form_with url: competitions_path, method: :get, class: "d-flex" do %>
-      <%= text_field_tag :query,
-            params[:query],
-            class: "form-control",
-            placeholder: "Recherche par ville ou compétition"
-        %>
-      <%= submit_tag "Go !", name: "", class: "btn btn-primary " %>
-    <% end %>
-        </div>
+       <div class="sidebar">
+      <div class="search-bar mb-4">
+        <%= form_with url: competitions_path, method: :get, class: "d-flex" do %>
+          <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "Recherche par ville ou compétition" %>
+          <%= submit_tag "Go !", name: "", class: "btn btn-primary " %>
+        <% end %>
+      </div>
 
         <div class="slide-container row">
           <% @competitions.each do |competition| %>
@@ -67,10 +63,11 @@
 
       <!-- Map -->
       <div id="map"
-        data-controller="map"
-        data-map-markers-value="<%= @markers.to_json %>"
-        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-      </div>
+      data-controller="map"
+      data-map-markers-value="<%= @markers.to_json %>"
+      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+      data-map-query-value="<%= params[:query] %>">
+    </div>
 
     </div> <!-- end main-content -->
   </div> <!-- end container -->
