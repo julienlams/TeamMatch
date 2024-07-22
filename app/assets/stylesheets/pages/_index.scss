@@ -158,19 +158,19 @@ body {
     }
 
     .clash-card__image--barbarian {
-      background-color: $green; /* Tennis */
+      background-color: $blue; /* Tennis */
     }
 
     .clash-card__image--archer {
-      background-color: $pink; /* Padel */
+      background-color: $yellow; /* Padel */
     }
 
     .clash-card__image--goblin {
-      background-color: $yellow; /* Ping-pong */
+      background-color: $pink; /* Ping-pong */
     }
 
     .clash-card__image--bad {
-      background-color: $blue; /* Badminton */
+      background-color: $green; /* Badminton */
     }
 
     .clash-card__level {
@@ -181,19 +181,19 @@ body {
     }
 
     .clash-card__level--barbarian {
-      color: $green;
+      color: $blue;
     }
 
     .clash-card__level--archer {
-      color: $pink;
-    }
-
-    .clash-card__level--goblin {
       color: $yellow;
     }
 
+    .clash-card__level--goblin {
+      color: $pink;
+    }
+
     .clash-card__level--bad {
-      color: $blue;
+      color: $green;
     }
 
     .clash-card__unit-name {

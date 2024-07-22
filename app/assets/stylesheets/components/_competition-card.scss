@@ -214,7 +214,7 @@ h1 {
 }
 
 .clash-card__image--barbarian {
-  background-color: $green;
+  background-color: $blue;
   img {
     width: 350px;
     height:250px;
@@ -227,19 +227,6 @@ h1 {
 }
 
 .clash-card__image--archer {
-  background-color: $pink;
-  img {
-    width: 350px;
-    height:250px;
-    position: absolute;
-    top: -70px;
-    left: 70px;
-    right: 80px;
-    overflow:visible;
-  }
-}
-
-.clash-card__image--goblin {
   background-color: $yellow;
   img {
     width: 350px;
@@ -252,8 +239,21 @@ h1 {
   }
 }
 
+.clash-card__image--goblin {
+  background-color: $pink;
+  img {
+    width: 350px;
+    height:250px;
+    position: absolute;
+    top: -70px;
+    left: 70px;
+    right: 80px;
+    overflow:visible;
+  }
+}
+
 .clash-card__image--bad {
-  background-color: $blue;
+  background-color: $green;
   img {
     width: 350px;
     height:250px;
@@ -273,19 +273,19 @@ h1 {
 }
 
 .clash-card__level--barbarian {
-  color: $green;
+  color: $blue;
 }
 
 .clash-card__level--archer {
-  color: $pink;
-}
-
-.clash-card__level--goblin {
   color: $yellow;
 }
 
+.clash-card__level--goblin {
+  color: $pink;
+}
+
 .clash-card__level--bad {
-  color: $blue;
+  color: $green;
 }
 
 .clash-card__unit-name {
@@ -305,34 +305,34 @@ h1 {
 }
 
 .clash-card__unit-stats--barbarian {
-  background: $green;
-
-  .one-third {
-    border-right: 1px solid #BD7C2F;
-  }
-}
-
-.clash-card__unit-stats--archer {
-  background: $pink;
-
-  .one-third {
-    border-right: 1px solid #D04976;
-  }
-}
-
-.clash-card__unit-stats--goblin {
-  background: $yellow;
-
-  .one-third {
-    border-right: 1px solid darken($yellow, 6%);
-  }
-}
-
-.clash-card__unit-stats--bad {
   background: $blue;
 
   .one-third {
     border-right: 1px solid darken($blue, 6%);
+  }
+}
+
+.clash-card__unit-stats--archer {
+  background: $yellow;
+
+  .one-third {
+    border-right: 1px solid darken($pink, 6%);
+  }
+}
+
+.clash-card__unit-stats--goblin {
+  background: $pink;
+
+  .one-third {
+    border-right: 1px solid darken($pink, 6%);
+  }
+}
+
+.clash-card__unit-stats--bad {
+  background: $green;
+
+  .one-third {
+    border-right: 1px solid darken($green, 6%);
   }
 }
 
