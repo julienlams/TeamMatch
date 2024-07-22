@@ -6,13 +6,13 @@
       <div class="bg-light p-4 rounded shadow-sm">
         <% sport_color = case @competition.sport.name
                           when 'Badminton'
-                            '#176cc7'
-                          when 'Tennis'
                             '#82bb30'
+                          when 'Tennis'
+                            '#176cc7'
                           when 'Padel'
-                            '#ee5487'
-                          when 'Ping-pong'
                             '#f69019'
+                          when 'Ping-pong'
+                            '#ee5487'
                           else
                             '#000000' # couleur par défaut ou autre traitement
                           end %>
