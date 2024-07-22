@@ -7,6 +7,43 @@ html, body {
   padding: 0;
 }
 
+.banner-competitions {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  height: 350px;
+  color: $white;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+
+  h1 {
+    font-family: 'Days One', sans-serif;
+    font-weight: 400;
+    font-size: 60px;
+    text-align:center;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: inherit;
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    animation: animateBanner 15s linear infinite;
+  }
+
+}
+
+.banner-competition-content {
+  overflow-x: hidden;
+}
+
 body {
   background: #fff;
   color: #000;
@@ -18,19 +55,21 @@ body {
 }
 
 .index-page {
-  .container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 0 0 0px; /* Ajuster les marges gauche et droite */
-    // padding: 20px 0 20px 10px; /* Ajuster les paddings si nécessaire */
-    margin-right: 0px;
-    margin-left: 10px;
-  }
 
-  .main-content {
+  .main-container {
     display: flex;
-    justify-content: space-between;
-    margin-top: 0; /* Supprimer la marge supérieure pour aligner la carte avec la bannière */
+    position: relative;
+
+    .sidebar {
+      flex-grow: 1;
+    }
+
+    #map {
+    height: 100vh;
+    flex: 0 0 33%;
+    position: sticky;
+    top: 0;
+    }
   }
 
 
@@ -39,6 +78,7 @@ body {
     padding: 20px;
     border-radius: 0px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin:  0 1em;
   }
 
   .search-bar {
@@ -74,33 +114,24 @@ body {
   }
 
   .wrapper {
-    flex: 1 1 calc(33.333% - 20px); /* Ajuster pour 3 cartes par ligne */
+    flex: 1 1 calc(33.333% - 20px);
     max-width: calc(33.333% - 20px);
     box-sizing: border-box;
     padding: 10px;
     margin: 0;
   }
 
-  .map-column {
-    position: sticky;
-    top: 0;
-    width: 33%;
-    height: 100vh; /* La carte occupe toute la hauteur de la vue */
-    padding: 0; /* Supprimer le padding */
-    margin-right: 0; /* Supprimer la marge droite */
-  }
-
   #map {
-    height: 100%; /* Faire en sorte que la hauteur de la carte remplisse toute la div parente */
+    height: 100%;
     width: 100%;
-    background-image: url('https://media.istockphoto.com/id/1189064346/fr/photo/carte-de-la-ville-avec-pin-pointers-3d-image-de-rendu.jpg?s=612x612&w=0&k=20&c=9SRCp-3wwPBCdXEUp8M4gRYWm7d3GJ3MQpoZqgmZQCA='); /* Image placeholder */
+    // background-image: url('https://media.istockphoto.com/id/1189064346/fr/photo/carte-de-la-ville-avec-pin-pointers-3d-image-de-rendu.jpg?s=612x612&w=0&k=20&c=9SRCp-3wwPBCdXEUp8M4gRYWm7d3GJ3MQpoZqgmZQCA='); /* Image placeholder */
     background-size: cover;
     background-position: center;
   }
 
   .clash-card {
     background: white;
-    width: 100%; /* Maintenir la largeur */
+    width: 100%;
     margin: $card-margin;
     border-radius: $border-radius-size + 5;
     position: relative;
@@ -110,18 +141,18 @@ body {
 
     .clash-card__image {
       position: relative;
-      height: 100px; /* Réduire la hauteur de l'image */
-      margin-bottom: 10px; /* Ajuster la marge inférieure */
+      height: 100px;
+      margin-bottom: 10px;
       border-top-left-radius: $border-radius-size;
       border-top-right-radius: $border-radius-size;
 
       img {
-        width: 150px; /* Réduire la largeur de l'image */
-        height: 100px; /* Réduire la hauteur de l'image */
+        width: 150px;
+        height: 100px;
         position: absolute;
-        top: -20px; /* Ajuster la position pour centrer l'image */
-        left: 25px; /* Ajuster la position pour centrer l'image */
-        right: 25px; /* Ajuster la position pour centrer l'image */
+        top: -20px;
+        left: 50px;
+        right: 25px;
         overflow: visible;
       }
     }
@@ -144,9 +175,9 @@ body {
 
     .clash-card__level {
       text-transform: uppercase;
-      font-size: 8px; /* Ajuster la taille de la police */
+      font-size: 8px;
       font-weight: 700;
-      margin-bottom: 3px; /* Ajuster la marge inférieure */
+      margin-bottom: 3px;
     }
 
     .clash-card__level--barbarian {
@@ -166,16 +197,16 @@ body {
     }
 
     .clash-card__unit-name {
-      font-size: 12px; /* Ajuster la taille de la police */
+      font-size: 12px;
       color: black;
       font-weight: 900;
-      margin-bottom: 5px; /* Ajuster la marge inférieure */
+      margin-bottom: 5px;
     }
 
     .clash-card__unit-description {
-      padding: 5px; /* Réduire le padding */
-      margin-bottom: 5px; /* Ajuster la marge inférieure */
-      height: auto; /* Ajuster la hauteur */
+      padding: 5px;
+      margin-bottom: 5px;
+      height: auto;
       overflow: hidden;
     }
 
@@ -188,24 +219,39 @@ body {
       .one-third {
         width: 33%;
         float: left;
-        padding: 10px 7.5px; /* Réduire le padding */
+        padding: 10px 7.5px;
       }
 
       .stat {
         position: relative;
-        font-size: 10px; /* Ajuster la taille de la police */
-        margin-bottom: 5px; /* Ajuster la marge inférieure */
+        font-size: 10px;
+        margin-bottom: 5px;
       }
 
       .stat-value {
         text-transform: uppercase;
         font-weight: 400;
-        font-size: 8px; /* Ajuster la taille de la police */
+        font-size: 8px;
       }
 
       .no-border {
         border-right: none;
       }
     }
+  }
+}
+
+@keyframes animateBanner {
+  0% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1) translateY(-10%);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
   }
 }

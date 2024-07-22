@@ -3,7 +3,16 @@ class CompetitionsController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
 
   def index
-    @competitions = Competition.all
+    if params[:query].present?
+      sql_subquery = <<~SQL
+        competitions.address @@ :query
+        OR competitions.city @@ :query
+        OR competitions.name @@ :query
+      SQL
+      @competitions = Competition.where(sql_subquery, query: "%#{params[:query]}%")
+    else
+      @competitions = Competition.all
+    end
 
     # The `geocoded` scope filters only competitions with coordinates
     @markers = @competitions.geocoded.map do |competition|
@@ -14,17 +23,7 @@ class CompetitionsController < ApplicationController
         marker_html: render_to_string(partial: "marker", locals: {competition: competition})
       }
     end
-
-    if params[:query].present?
-      sql_subquery = <<~SQL
-        competitions.address @@ :query
-        OR competitions.city @@ :query
-        OR competitions.name @@ :query
-      SQL
-      @competitions = @competitions.where(sql_subquery, query: "%#{params[:query]}%")
-    end
   end
-
 
   def show
     @competition = Competition.find(params[:id])
