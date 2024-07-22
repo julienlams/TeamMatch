@@ -1,9 +1,15 @@
+<!-- app/views/competitions/_competition-card.html.erb -->
+
 <% @top_competitions.each_with_index do |competition, index| %>
   <div class="wrapper">
     <%= link_to competition_path(competition), class: 'clash-card-link' do %>
       <div class="clash-card <%= card_class(competition.sport.name) %>">
         <div class="clash-card__image <%= image_class(competition.sport.name) %>">
-          <%= image_tag competition.image, alt: competition.name %>
+          <% if competition.image_url.present? %>
+            <div class="competition-image">
+              <img src="<%= competition.image_url %>" alt="<%= competition.name %>" />
+            </div>
+          <% end %>
         </div>
         <div class="clash-card__level <%= level_class(competition.sport.name) %>"><%= competition.sport.name %></div>
         <div class="clash-card__unit-name"><%= competition.name %></div>
