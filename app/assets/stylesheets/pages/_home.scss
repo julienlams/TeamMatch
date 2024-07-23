@@ -34,6 +34,29 @@ p {
   line-height: $line-height;
 }
 
+.sport-icon-range {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 10px;
+  width: 200px;
+}
+
+.sport-icon-range {
+  // Assure-toi que l'image est bien en forme ronde
+  .sport-icon {
+    border: 5px solid white; // Bordure blanche de 10px
+    border-radius: 50%;      // Bordure arrondie
+  }
+
+  // Style pour le titre en dessous de l'image
+  .circle-title {
+    font-weight: 600;
+    padding-top: 10px;
+    font-size: 16px;
+  }
+}
+
 .banner {
   position: relative;
   display: flex;
