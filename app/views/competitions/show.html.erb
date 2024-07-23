@@ -23,7 +23,7 @@
         <p><strong>Date:</strong> <%= @competition.date.strftime('%d %B %Y') %></p>
         <p><strong>Heure:</strong> <%= @competition.time.strftime('%Hh%M') %></p>
         <p><strong>Adresse :</strong> <%= @competition.address %></p>
-        <%= link_to "Retour à la liste des compétitions", competitions_path, class: "btn btn-outline-primary mt-3 mb-2", style: "color: #{sport_color}; border-color: #{sport_color};" %>
+        <%= link_to "Retour à la liste des compétitions", competitions_path, class: "btn btn-outline-primary team-button mt-3 mb-2", style: "color: #{sport_color}; border-color: #{sport_color};" %>
       </div>
     </div>
 
@@ -35,10 +35,10 @@
         <div class="col-md-4 mb-4">
           <%= link_to user_path(team.owner_id), class: 'text-decoration-none' do %>
             <div class='h-100'>
-              <div class="card-body" style="background-color:#FFFFFF;border: 1px solid <%= sport_color %>;">
+              <div class="card-body team1" style="background-color:#FFFFFF;border: 1px solid <%= sport_color %>;">
                 <h5 class="card-title" style="color: <%= sport_color %>;"><%= team.name %></h5><br>
-                <p class="card-text"><strong class="text-dark">Nombre maximum de participants :</strong> <span class="text-muted"><%= team.number_max_of_participants %></span></p><br>
-                <p class="card-text"><strong class="text-dark">Créateur de l'équipe :</strong> <span class="text-muted"><%= User.find(team.owner_id).name %></span></p>
+                <p class="card-text team1"><strong class="text-dark">Nombre maximum de participants :</strong> <span class="text-muted"><%= team.number_max_of_participants %></span></p><br>
+                <p class="card-text team1"><strong class="text-dark">Créateur de l'équipe :</strong> <span class="text-muted"><%= User.find(team.owner_id).name %></span></p>
                 <button class="btn btn-primary btn-sm mt-3 mb-2 w-100" style="background-color: <%= sport_color %>; border-color: <%= sport_color %>;" data-action="click->join-team#openModal" data-team-id="<%= team.id %>" data-team-chatroom-url="<%= chatroom_path(team.chatroom) %>">Rejoindre</button>
               </div>
             </div>

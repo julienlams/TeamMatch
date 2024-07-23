@@ -22,9 +22,9 @@
       <% if @user_sports.any? %>
         <% @user_sports.each do |user_sport| %>
           <div class="sport <%= user_sport.sport.name.downcase %>">
-            <div class="card-body draw-border">
-              <h5 class="card-title yellow-gradient"><%= user_sport.sport.name %></h5>
-              <p class="card-text"><%= user_sport.level %>ème Français</p>
+            <div class="card-body front2 draw-border">
+              <h5 class="card-title front1 yellow-gradient"><%= user_sport.sport.name %></h5>
+              <p class="card-text front3"><%= user_sport.level %>ème Français</p>
             </div>
           </div>
         <% end %>
@@ -42,9 +42,9 @@
       <% if @user_sports.any? %>
         <% @user_sports.each do |user_sport| %>
           <% if user_sport.palmares.present? %>
-            <div class="palmares-item card-body draw-border" <%= user_sport.sport.name.downcase %>>
-              <h5 class="card-title yellow-gradient"><%= user_sport.sport.name %></h5>
-              <p class="card-text"><%= user_sport.palmares %></p>
+            <div class="palmares-item card-body front2 draw-border" <%= user_sport.sport.name.downcase %>>
+              <h5 class="card-title front1 yellow-gradient"><%= user_sport.sport.name %></h5>
+              <p class="card-text front3"><%= user_sport.palmares %></p>
             </div>
           <% end %>
         <% end %>
@@ -60,14 +60,14 @@
     <p class="card__name yellow-gradient mb-2" style="font-size:2em">Dernières teams</p>
     <div class="teams">
       <% if @owned_teams.any? %>
-        <p class= "card-text mt-2"><%= @owned_teams.count %> équipes trouvées</p>
+        <p class= "card-text front3 mt-2"><%= @owned_teams.count %> équipes trouvées</p>
         <% @owned_teams.each do |team| %>
           <div class="team card-profil mb-3">
             <%= link_to competition_path(team.competition), class: 'card-profil-link' do %>
               <%# <div class="card-background" style="background-image: url('https://picsum.photos/200/300');"></div> %>
-              <div class="card-body draw-border">
-                <h5 class="card-title gradient-text"><%= team.name %></h5>
-                <p class="card-text"><%= team.competition.sport.name %></p>
+              <div class="card-body front2 draw-border">
+                <h5 class="card-title front1 gradient-text"><%= team.name %></h5>
+                <p class="card-text front3"><%= team.competition.sport.name %></p>
                 <%# <p class="card-text"><%= team.competition.address</p> %>
               </div>
             <% end %>
