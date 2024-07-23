@@ -1,23 +1,30 @@
 <!-- app/views/users/show.html.erb -->
 <div class="button-container">
-  <button onclick="history.back()" class="btn btn-secondary btn-block my-3">Retour aux teams</button>
+  <button onclick="history.back()" class="btn btn-secondary my-3">Retour aux teams</button>
 </div>
-<div class="container-profil" data-controller="add-sport">
-  <div class="left-column">
-    <div class="profile card-profil mb-3">
-      <img class="card-img-top" src="https://picsum.photos/200/300">
-      <div>
-        <h2><%= @user.id %> USERNAME</h2>
-      </div>
+
+<div class="card-container" data-controller="add-sport">
+  <!-- Profil Card -->
+  <div class="card" style="background-image: url('/assets/vecteezy_beautiful-blurred-vector-background_105252.jpg');">
+    <img src="<%= asset_path('photo_profil.png') %>" alt="photo profil" class="card__image">
+    <p class="card__name yellow-gradient mb-2" style="font-size:2em">Murray Reeve</p>
+    <div class="grid-container">
+      <div class="grid-child-posts">305 Post</div>
+      <div class="grid-child-posts">2643 Likes</div>
     </div>
+    <ul class="social-icons">
+      <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+      <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+      <li><a href="#"><i class="fa fa-codepen"></i></a></li>
+    </ul>
     <div class="sports">
-      <h3>Sports</h3>
       <% if @user_sports.any? %>
         <% @user_sports.each do |user_sport| %>
-          <div class="sport card-profil mb-3 <%= user_sport.sport.name.downcase %>">
-            <div class="card-body">
-              <h5 class="card-title"><%= user_sport.sport.name %></h5>
-              <p class="card-text"> <%= user_sport.level %>ème Français</p>
+          <div class="sport <%= user_sport.sport.name.downcase %>">
+            <div class="card-body draw-border">
+              <h5 class="card-title yellow-gradient"><%= user_sport.sport.name %></h5>
+              <p class="card-text"><%= user_sport.level %>ème Français</p>
             </div>
           </div>
         <% end %>
@@ -27,17 +34,17 @@
     </div>
   </div>
 
-  <div class="middle-column">
+  <!-- Palmarès Card -->
+  <div class="card">
+    <img src="<%= asset_path('Palmarès.png') %>" alt="palmarès profil" class="card__image">
+    <p class="card__name yellow-gradient mb-2" style="font-size:2em">Palmarès</p>
     <div class="palmares">
-      <h3>Palmarès</h3>
       <% if @user_sports.any? %>
         <% @user_sports.each do |user_sport| %>
           <% if user_sport.palmares.present? %>
-            <div class="palmares-item card-profil mb-3 <%= user_sport.sport.name.downcase %>">
-              <div class="card-body">
-                <h5 class="card-title"><%= user_sport.sport.name %></h5>
-                <p class="card-text"> <%= user_sport.palmares %></p>
-              </div>
+            <div class="palmares-item card-body draw-border" <%= user_sport.sport.name.downcase %>>
+              <h5 class="card-title yellow-gradient"><%= user_sport.sport.name %></h5>
+              <p class="card-text"><%= user_sport.palmares %></p>
             </div>
           <% end %>
         <% end %>
@@ -47,76 +54,78 @@
     </div>
   </div>
 
-<div class="right-column">
-  <div class="teams">
-    <h3>Dernières teams</h3>
-    <% if @owned_teams.any? %>
-      <p><%= @owned_teams.count %> équipes trouvées</p>
-      <% @owned_teams.each do |team| %>
-        <div class="team card-profil mb-3">
-          <%= link_to competition_path(team.competition), class: 'card-profil-link' do %>
-            <div class="card-background" style="background-image: url('https://picsum.photos/200/300');"></div>
-            <div class="card-body">
-              <h5 class="card-title"><%= team.name %></h5>
-              <p class="card-text"><%= team.competition.sport.name %></p>
-              <p class="card-text"><%= team.competition.address %></p>
-            </div>
-          <% end %>
-        </div>
+  <!-- Dernières Teams Card -->
+  <div class="card">
+    <img src="<%= asset_path('team-profile.png') %>" alt="palmarès profil" class="card__image">
+    <p class="card__name yellow-gradient mb-2" style="font-size:2em">Dernières teams</p>
+    <div class="teams">
+      <% if @owned_teams.any? %>
+        <p class= "card-text mt-2"><%= @owned_teams.count %> équipes trouvées</p>
+        <% @owned_teams.each do |team| %>
+          <div class="team card-profil mb-3">
+            <%= link_to competition_path(team.competition), class: 'card-profil-link' do %>
+              <%# <div class="card-background" style="background-image: url('https://picsum.photos/200/300');"></div> %>
+              <div class="card-body draw-border">
+                <h5 class="card-title gradient-text"><%= team.name %></h5>
+                <p class="card-text"><%= team.competition.sport.name %></p>
+                <%# <p class="card-text"><%= team.competition.address</p> %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      <% else %>
+        <p>Aucune équipe disponible</p>
       <% end %>
-    <% else %>
-      <p>Aucune équipe disponible</p>
-    <% end %>
+    </div>
   </div>
 </div>
 
-  <!-- Modale pour ajouter un sport -->
-  <div class="modal" data-add-sport-target="sportModal">
-    <div class="modal-background" data-action="click->add-sport#close"></div>
-    <div class="modal-content">
-      <button class="modal-close is-large" aria-label="close" data-action="click->add-sport#close">&times;</button>
-      <form action="/user_sports" method="post">
-        <div class="field">
-          <label class="label">Nom du sport</label>
-          <div class="control">
-            <input class="input" type="text" name="sport[name]" placeholder="Nom du sport">
-          </div>
-        </div>
-        <div class="field">
-          <label class="label">Niveau</label>
-          <div class="control">
-            <input class="input" type="text" name="user_sport[level]" placeholder="Niveau">
-          </div>
-        </div>
+<!-- Modale pour ajouter un sport -->
+<div class="modal" data-add-sport-target="sportModal">
+  <div class="modal-background" data-action="click->add-sport#close"></div>
+  <div class="modal-content">
+    <button class="modal-close is-large" aria-label="close" data-action="click->add-sport#close">&times;</button>
+    <form action="/user_sports" method="post">
+      <div class="field">
+        <label class="label">Nom du sport</label>
         <div class="control">
-          <button type="submit" class="btn btn-primary mt-3">Ajouter</button>
+          <input class="input" type="text" name="sport[name]" placeholder="Nom du sport">
         </div>
-      </form>
-    </div>
+      </div>
+      <div class="field">
+        <label class="label">Niveau</label>
+        <div class="control">
+          <input class="input" type="text" name="user_sport[level]" placeholder="Niveau">
+        </div>
+      </div>
+      <div class="control">
+        <button type="submit" class="btn btn-primary mt-3">Ajouter</button>
+      </div>
+    </form>
   </div>
+</div>
 
-  <!-- Modale pour ajouter un palmarès -->
-  <div class="modal" data-add-sport-target="palmaresModal">
-    <div class="modal-background" data-action="click->add-sport#close"></div>
-    <div class="modal-content">
-      <button class="modal-close is-large" aria-label="close" data-action="click->add-sport#close">&times;</button>
-      <form action="/user_sports" method="post">
-        <div class="field">
-          <label class="label">Nom du sport</label>
-          <div class="control">
-            <input class="input" type="text" name="sport[name]" placeholder="Nom du sport">
-          </div>
-        </div>
-        <div class="field">
-          <label class="label">Palmarès</label>
-          <div class="control">
-            <input class="input" type="text" name="user_sport[palmares]" placeholder="Palmarès">
-          </div>
-        </div>
+<!-- Modale pour ajouter un palmarès -->
+<div class="modal" data-add-sport-target="palmaresModal">
+  <div class="modal-background" data-action="click->add-sport#close"></div>
+  <div class="modal-content">
+    <button class="modal-close is-large" aria-label="close" data-action="click->add-sport#close">&times;</button>
+    <form action="/user_sports" method="post">
+      <div class="field">
+        <label class="label">Nom du sport</label>
         <div class="control">
-          <button type="submit" class="btn btn-primary mt-3">Ajouter</button>
+          <input class="input" type="text" name="sport[name]" placeholder="Nom du sport">
         </div>
-      </form>
-    </div>
+      </div>
+      <div class="field">
+        <label class="label">Palmarès</label>
+        <div class="control">
+          <input class="input" type="text" name="user_sport[palmares]" placeholder="Palmarès">
+        </div>
+      </div>
+      <div class="control">
+        <button type="submit" class="btn btn-primary mt-3">Ajouter</button>
+      </div>
+    </form>
   </div>
 </div>
