@@ -1,26 +1,31 @@
-<div class="container chatroom"
+<div class="chatroom"
   data-controller="chatroom-subscription"
   data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
   data-chatroom-subscription-current-user-id-value="<%= current_user.id %>">
 
-  <h1><%= @chatroom.team.name %></h1>
+  <div class="content-wrapper">
+    <h1 class="yellow-gradient" style="background-color: white;"><%= @chatroom.team.name %></h1>
+    <div class="mobile">
+      <%= image_tag asset_path('team_show.jpg'), class: "img" %>
 
-  <div class="messages" data-chatroom-subscription-target="messages">
-    <% @chatroom.messages.each do |message| %>
-      <div class="message-row d-flex <%= message.sender?(current_user) ? 'justify-content-end' : 'justify-content-start' %>">
-        <div class="<%= message.sender?(current_user) ? 'sender-style' : 'receiver-style' %>">
-          <%= render "messages/message", message: message %>
-        </div>
+      <div class="messages" data-chatroom-subscription-target="messages">
+        <% @chatroom.messages.each do |message| %>
+          <div class="message-row d-flex <%= message.sender?(current_user) ? 'justify-content-end' : 'justify-content-start' %>">
+            <div class="<%= message.sender?(current_user) ? 'sender-style' : 'receiver-style' %>">
+              <%= render "messages/message", message: message %>
+            </div>
+          </div>
+        <% end %>
       </div>
-    <% end %>
-  </div>
 
-  <%= simple_form_for [@chatroom, @message], url: chatroom_messages_path(@chatroom), html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "chat-form d-flex align-items-center mt-3" } do |f| %>
-    <div class="form-group flex-grow-1 mb-0">
-      <%= f.input :content, as: :text, input_html: { class: "form-control", rows: 1, placeholder: "Type your message here..." }, label: false %>
+      <%= simple_form_for [@chatroom, @message], url: chatroom_messages_path(@chatroom), html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "chat-form d-flex align-items-center" } do |f| %>
+        <div class="form-group flex-grow-1 mb-0">
+          <%= f.input :content, as: :text, input_html: { class: "form-control", rows: 1, placeholder: "Type your message here..." }, label: false %>
+        </div>
+        <div class="form-group ml-3 mb-0">
+          <%= f.button :submit, "Envoyer", class: "btn btn-primary" %>
+        </div>
+      <% end %>
     </div>
-    <div class="form-group ml-3 mb-0">
-      <%= f.button :submit, "Envoyer", class: "btn btn-primary" %>
-    </div>
-  <% end %>
+  </div>
 </div>

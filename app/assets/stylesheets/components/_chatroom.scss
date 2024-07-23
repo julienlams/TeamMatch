@@ -1,22 +1,59 @@
 .chatroom {
-  background: white;
+  background-image: url('/assets/background_chatroom.png');
+  background-size: cover;
+  background-position: center;
   margin-top: 9px;
-  height: calc(100vh - 210px); /* Adjust based on your header/footer height */
   display: flex;
   flex-direction: column;
 
+
+  .content-wrapper {
+    background-color: rgba($color: white, $alpha: 0.4);
+    // opacity: 0.4;
+    padding: 20px;
+    border-radius: 5px;
+    height: 800px;
+    width: 800px;
+    margin: 20px auto;
+
+  }
+
+  .mobile {
+    box-shadow: 5px 5px 0 #768693;
+    height: 600px;
+    width: 600px;
+    margin: 20px auto;
+    overflow: hidden;
+    border: 0 solid #2c3e50;
+    border-width: 45px 15px 60px;
+    color: #474c57;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+
+
+
+    img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      max-width: 100%;
+    }
+  }
+
   h1 {
-    border-bottom: 1px solid #ccc;
+    background-color: white;
     margin-bottom: 0;
     padding: 1rem;
+    font-family: "Bebas Neue", sans-serif;
   }
 
   .messages {
     flex-grow: 1;
-    overflow-y: auto; /* Enable vertical scroll */
+    overflow-y: auto;
     padding: 1rem;
     background: #f9f9f9;
-    max-height: calc(100vh - 200px); /* Adjust based on your header/footer and form height */
+    max-height: calc(100% - 200px);
   }
 
   .chat-form {
@@ -25,10 +62,13 @@
     background: #fff;
     display: flex;
     align-items: center;
+    position: sticky;
+    bottom: 0;
   }
 
   .form-group {
     margin-bottom: 0;
+    // flex-grow: 1;
   }
 
   .form-control {
@@ -46,6 +86,7 @@
     margin-left: 1rem !important;
   }
 }
+
 .chatroom-card {
   display: flex;
   align-items: center;
@@ -89,10 +130,12 @@
   text-decoration: none;
   color: black;
 }
+
 .team-align-padding {
   padding: 1rem;
   text-align: center;
 }
+
 .padding-team {
   padding-top: 20px;
 }
