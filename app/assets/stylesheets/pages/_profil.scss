@@ -1,37 +1,280 @@
-/* app/assets/stylesheets/users.scss */
-.container-profil {
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Paaji+2:wght@400;500&display=swap");
+
+$green: #7ACC3F;
+$yellow: #FFC73A;
+$pink: #F15E5F;
+$blue: #2775E1;
+
+.button-container {
+  display: flex;
+  // justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.button-container .btn {
+  width: auto;
+  padding: 0.75em 1.5em;
+  background: linear-gradient(135deg, $pink, $yellow);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+  font-family: 'Bebas Neue', sans-serif;
+}
+
+.button-container .btn:hover {
+  background: linear-gradient(135deg, $yellow, $green);
+}
+
+.button-container .btn:focus {
+  outline: 2px dotted #55d7dc;
+}
+
+.card-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  grid-gap: 20px;
+  justify-content: center;
+  align-items: start;
   padding: 20px;
-
-
-  .left-column, .middle-column, .right-column {
-    background-color: #f7f7f7;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  background-color: #f5f5f5;
+  font-family: 'Bebas Neue', cursive;
+  max-width: 1200px;
+  width: 100%;
+  margin: 2rem auto;
   }
 
-  .profile img {
-    border-radius: 50%;
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    margin-bottom: 10px;
+
+.card {
+  height: 100%;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  color: white;
+  // padding: 20px;
+  box-sizing: border-box;
+  position: relative;
+
+  img {
+    width: 200px;
+    height:200px;
+    position: relative;
+    top: -90px;
+    left: 10px;
+    right: 70px;
+    overflow:visible;
   }
 
-  .sports, .palmares, .teams, .sport, .palmares-item, .team {
-    margin-bottom: 10px;
   }
 
-  .team img {
-    width: 100px;
-    height: 100px;
-    border-radius: 5px;
-    margin-right: 10px;
-  }
+.card-body {
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px 0;
+  width: 100%;
+  box-sizing: border-box;
+  height: 100px;
+  position: relative;
+  z-index: 1;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: solid 1px;
+  overflow: hidden;
+  white-space: nowrap;
+  background-color: white;
 }
+
+.card-text {
+  font-family:'Bebas Neue', sans-serif;
+  font-size: 15px;
+  color: grey;
+  text-overflow: ellipsis;
+}
+
+.card-title {
+  font-family:'Bebas Neue', sans-serif;
+  font-size: 20px;
+  text-align: center;
+  text-overflow: ellipsis;
+}
+
+.card__name {
+  margin-top: 15px;
+  font-size: 2.5em;
+}
+
+.card__image {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  border: 5px solid #272133;
+  margin-top: 20px;
+  box-shadow: 0 10px 50px rgba(235, 25, 110, 1);
+}
+
+.draw-border {
+  box-shadow: inset 0 0 0 4px #eb196e;
+  color: #58afd1;
+  transition: color 0.25s 0.0833333333s;
+  position: relative;
+}
+
+.draw-border::before,
+.draw-border::after {
+  border: 0 solid transparent;
+  box-sizing: border-box;
+  content: '';
+  pointer-events: none;
+  position: absolute;
+  width: 0;
+  height: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.draw-border::before {
+  border-bottom-width: 4px;
+  border-left-width: 4px;
+}
+
+.draw-border::after {
+  border-top-width: 4px;
+  border-right-width: 4px;
+}
+
+.draw-border:hover {
+  color: #ffe593;
+}
+
+.draw-border:hover::before,
+.draw-border:hover::after {
+  border-color: #58cdd1;
+  transition: border-color 0s, width 0.25s, height 0.25s;
+  width: 100%;
+  height: 100%;
+}
+
+.draw-border:hover::before {
+  transition-delay: 0s, 0s, 0.25s;
+}
+
+.draw-border:hover::after {
+  transition-delay: 0s, 0.25s, 0s;
+}
+
+.btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  line-height: 1.5;
+  font: 700 1.2rem 'Roboto Slab', sans-serif;
+  padding: 0.75em 2em;
+  letter-spacing: 0.05rem;
+  margin: 0em;
+  width: 100%;
+}
+
+.btn:focus {
+  outline: 2px dotted #55d7dc;
+}
+
+.social-icons {
+  padding: 0;
+  list-style: none;
+  margin: 1em;
+}
+
+.social-icons li {
+  display: inline-block;
+  margin: 0.15em;
+  position: relative;
+  font-size: 1em;
+}
+
+.social-icons i {
+  color: #fff;
+  position: absolute;
+  top: 0.95em;
+  left: 0.96em;
+  transition: all 265ms ease-out;
+}
+
+.social-icons a {
+  display: inline-block;
+}
+
+.social-icons a:before {
+  transform: scale(1);
+  content: " ";
+  width: 45px;
+  height: 45px;
+  border-radius: 100%;
+  display: block;
+  background: linear-gradient(45deg, #ff003c, #c648c8);
+  transition: all 265ms ease-out;
+}
+
+.social-icons a:hover:before {
+  transform: scale(0);
+  transition: all 265ms ease-in;
+}
+
+.social-icons a:hover i {
+  transform: scale(2.2);
+  color: #ff003c;
+  background: linear-gradient(45deg, #ff003c, #c648c8);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 265ms ease-in;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+  font-size: 1.2em;
+}
+
+.sports, .palmares, .teams, .sport, .palmares-item, .team {
+  margin-bottom: 10px;
+}
+
+.teams {
+  max-width: 100%;
+}
+
+// .sports {
+//   width: 100%;
+// }
+
+// .palmares {
+//   width: 100%;
+// }
+
+
+.clear {
+  clear: both;
+}
+
+.card-profil-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.card-profil-link:hover,
+.card-profil-link:focus,
+.card-profil-link:active {
+  color: inherit;
+  text-decoration: none;
+}
+
 .card-profil {
   position: relative;
   background-size: cover;
@@ -51,48 +294,6 @@
   border-radius: 0.25rem;
 }
 
-.card-body {
-  position: relative;
-  z-index: 1;
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 0.25rem;
-}
-
-.card-body h5, .card-body p {
-  margin: 0;
-}
-.card-profil-link {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-}
-
-.card-profil-link:hover,
-.card-profil-link:focus,
-.card-profil-link:active {
-  color: inherit;
-  text-decoration: none;
-}
-
-.card-profil-footer {
-  text-align: center;
-  margin-top: 10px;
-}
-.btn-profil {
-  text-decoration: none;
-  color: white;
-  padding: 10px 15px;
-  background-color: #007bff;
-  border: none;
-  border-radius: 5px;
-  display: inline-block;
-  cursor: pointer;
-}
-
-.btn-profil:hover {
-  background-color: #0056b3;
-}
-
-.btn-profil:focus {
-  outline: none;
+.grid-child-posts {
+  color: grey
 }
