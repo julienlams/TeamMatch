@@ -7,7 +7,7 @@
   <!-- Profil Card -->
   <div class="card" style="background-image: url('/assets/vecteezy_beautiful-blurred-vector-background_105252.jpg');">
     <img src="<%= asset_path('photo_profil.png') %>" alt="photo profil" class="card__image">
-    <p class="card__name yellow-gradient mb-2" style="font-size:2em">Murray Reeve</p>
+    <p class="card__name yellow-gradient mb-2" style="font-size:2em"><%= @user.name %></p>
     <div class="grid-container">
       <div class="grid-child-posts">305 Post</div>
       <div class="grid-child-posts">2643 Likes</div>
