@@ -1,7 +1,15 @@
 <div id="message-<%= message.id %>">
   <small>
-    <strong><%= message.user.id %></strong>
-    <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
+    <strong><%= message.user.name %></strong>
+    <%
+      # Configuration du fuseau horaire de Paris
+      paris_time = message.created_at.in_time_zone('Europe/Paris')
+      # Configuration de la langue française
+      I18n.locale = :fr
+      # Utilisation du format de date long
+      formatted_date = I18n.l(paris_time, format: :long)
+    %>
+    <i><%= formatted_date %></i>
   </small>
   <p><%= message.content %></p>
 </div>
