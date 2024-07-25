@@ -1,11 +1,10 @@
 .chatroom {
-  background-image: url('/assets/background_chatroom.png');
+  background-image: url('https://res.cloudinary.com/dsj2h7qb7/image/upload/v1721939468/l47pa5kwfoqzltfndnpc.png');
   background-size: cover;
   background-position: center;
   margin-top: 9px;
   display: flex;
   flex-direction: column;
-
 
   .content-wrapper {
     background-color: rgba($color: white, $alpha: 0);

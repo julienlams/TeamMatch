@@ -15,8 +15,8 @@ User.destroy_all
 # Array of user data
 users_data = [
   { email: "hello@hotmail.com", password: "123456", password_confirmation: "123456", name: "Stephanie" },
-  { email: "hello1@hotmail.com", password: "123456", password_confirmation: "123456", name: "Arnaud" },
-  { email: "hello2@hotmail.com", password: "123456", password_confirmation: "123456", name: "Julien" }
+  { email: "hello1@hotmail.com", password: "123456", password_confirmation: "123456", name: "Angelica" },
+  { email: "hello2@hotmail.com", password: "123456", password_confirmation: "123456", name: "Audrey" }
 ]
 
 # Create 30 other users with random first names
