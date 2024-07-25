@@ -230,9 +230,9 @@ Competition.all.each do |competition|
   puts "#{competition.name}: #{competition.latitude}, #{competition.longitude}"
 end
 
-# Ensure each user owns a maximum of 3 teams
+# Ensure each user owns a maximum of 5 teams
 User.all.each do |user|
-  if user.owned_teams.count > 3
-    user.owned_teams.order(created_at: :desc).limit(user.owned_teams.count - 3).destroy_all
+  if user.owned_teams.count > 5
+    user.owned_teams.order(created_at: :desc).limit(user.owned_teams.count - 5).destroy_all
   end
 end
