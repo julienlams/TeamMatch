@@ -126,7 +126,7 @@ sports_with_competitions = [
   {
     name: "Tennis",
     competitions: [
-      { name: "Roland Garros", city: "Paris", address: "2 Avenue Gordon Bennett, 75016 Paris", date: Date.new(2024, 5, 30), time: Time.new(2024, 5, 30, 14, 0, 0), cost: 100.0, latitude: 48.847, longitude: 2.249, image_url: "https://res.cloudinary.com/dsj2h7qb7/image/upload/v1721486534/tennis_card_rhklbe.png", description: "Le prestigieux tournoi Roland Garros du calendrier tennistique.", number_of_teams: 13 },
+      { name: "Roland Garros", city: "Paris", address: "2 Avenue Gordon Bennett, 75016 Paris", date: Date.new(2025, 5, 30), time: Time.new(2025, 5, 30, 14, 0, 0), cost: 100.0, latitude: 48.847, longitude: 2.249, image_url: "https://res.cloudinary.com/dsj2h7qb7/image/upload/v1721486534/tennis_card_rhklbe.png", description: "Le prestigieux tournoi Roland Garros du calendrier tennistique.", number_of_teams: 13 },
       { name: "Lyon Open", city: "Lyon", address: "155 Boulevard Stalingrad, 69006 Lyon", date: Date.new(2024, 6, 15), time: Time.new(2024, 6, 15, 10, 0, 0), cost: 50.0, latitude: 45.770, longitude: 4.860, image_url: "https://res.cloudinary.com/dsj2h7qb7/image/upload/v1721486534/tennis_card_rhklbe.png", description: "Un tournoi de tennis excitant à Lyon, réunissant les meilleurs talents.", number_of_teams: 6 },
       { name: "Paris Masters", city: "Paris", address: "8 Boulevard de Bercy, 75012 Paris", date: Date.new(2024, 7, 10), time: Time.new(2024, 7, 10, 16, 0, 0), cost: 75.0, latitude: 48.838, longitude: 2.380, image_url: "https://res.cloudinary.com/dsj2h7qb7/image/upload/v1721486534/tennis_card_rhklbe.png", description: "Le prestigieux Paris Masters, connu pour ses matchs compétitifs.", number_of_teams: 7 }
     ]
