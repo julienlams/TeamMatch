@@ -9,8 +9,8 @@
     <img src="<%= asset_path('photo_profil.png') %>" alt="photo profil" class="card__image">
     <p class="card__name yellow-gradient mb-2" style="font-size:2em"><%= @user.name %></p>
     <div class="grid-container">
-      <div class="grid-child-posts">305 Post</div>
-      <div class="grid-child-posts">2643 Likes</div>
+      <div class="grid-child-posts align-center">305 Compétitions</div>
+      <div class="grid-child-posts align-center">478 équipes</div>
     </div>
     <ul class="social-icons">
       <li><a href="#"><i class="fab fa-instagram"></i></a></li>
@@ -62,12 +62,13 @@
       <% if @owned_teams.any? %>
         <p class= "card-text front3 mt-2"><%= @owned_teams.count %> équipes trouvées</p>
         <% @owned_teams.each do |team| %>
-          <div class="team card-profil mb-3">
+          <div class="team card-profil mb-3" >
             <%= link_to competition_path(team.competition), class: 'card-profil-link' do %>
               <%# <div class="card-background" style="background-image: url('https://picsum.photos/200/300');"></div> %>
-              <div class="card-body front2 draw-border">
-                <h5 class="card-title front1 gradient-text"><%= team.name %></h5>
-                <p class="card-text front3"><%= team.competition.sport.name %></p>
+              <div class="card-body front2 draw-border" style="height:150px;">
+                <h5 class="card-title front1 yellow-gradient"><%= team.name %></h5>
+                <p class="card-text front3" ><%= team.competition.sport.name %></p>
+                <button class="btn btn-primary btn-sm mt-3 mb-2 w-100" data-action="click->join-team#openModal" data-team-id="<%= team.id %>" data-team-chatroom-url="<%= chatroom_path(team.chatroom) %>">Rejoindre</button>
                 <%# <p class="card-text"><%= team.competition.address</p> %>
               </div>
             <% end %>

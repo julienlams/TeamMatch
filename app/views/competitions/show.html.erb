@@ -80,16 +80,27 @@
   </div>
 
   <!-- Modale pour rejoindre une équipe -->
-  <div class="modal" data-join-team-target="modal">
-    <div class="modal-background" data-action="click->join-team#close"></div>
-    <div class="modal-content">
-      <button class="modal-close is-large" aria-label="close" data-action="click->join-team#close">&times;</button>
-      <div class="modal-body">
-        <h3>Bienvenue dans la team !</h3>
-        <p>Nous sommes ravis de vous avoir avec nous. Que l'aventure commence !</p>
-        <button class="btn btn-secondary" data-action="click->join-team#close">Retour aux équipes</button>
-        <button class="btn btn-primary" data-action="click->join-team#goToChatroom">Discuter avec mes équipiers</button>
-      </div>
+<div class="modal see-team-modal" data-join-team-target="modal">
+  <% sport_color = case @competition.sport.name
+                          when 'Badminton'
+                            '#82bb30'
+                          when 'Tennis'
+                            '#176cc7'
+                          when 'Padel'
+                            '#f69019'
+                          when 'Ping-pong'
+                            '#ee5487'
+                          else
+                            '#000000' # couleur par défaut ou autre traitement
+                          end %>
+  <div class="modal-background" data-action="click->join-team#close"></div>
+  <div class="modal-content">
+    <button class="modal-close is-large" aria-label="close" data-action="click->join-team#close">&times;</button>
+    <div class="modal-body team1">
+      <h3 class="modal-title" style="color: <%= sport_color %>;">Bienvenue dans la team !</h3>
+      <p class="modal-text">Nous sommes ravis de t'avoir avec nous. Que l'aventure commence !</p>
+      <button class="btn btn-secondary team-button" data-action="click->join-team#close">Retour aux équipes</button>
+      <button class="btn btn-primary team-button" style="background-color: <%= sport_color %>; border-color: <%= sport_color %>;" data-action="click->join-team#goToChatroom">Discuter avec mes équipiers</button>
     </div>
   </div>
 </div>
