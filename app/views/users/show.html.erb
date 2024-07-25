@@ -7,16 +7,16 @@
   <!-- Profil Card -->
   <div class="card" style="background-image: url('/assets/vecteezy_beautiful-blurred-vector-background_105252.jpg');">
     <img src="<%= asset_path('photo_profil.png') %>" alt="photo profil" class="card__image">
-    <p class="card__name yellow-gradient mb-2" style="font-size:2em">Murray Reeve</p>
+    <p class="card__name yellow-gradient mb-2" style="font-size:2em"><%= @user.name %></p>
     <div class="grid-container">
       <div class="grid-child-posts">305 Post</div>
       <div class="grid-child-posts">2643 Likes</div>
     </div>
     <ul class="social-icons">
-      <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-      <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-      <li><a href="#"><i class="fa fa-codepen"></i></a></li>
+      <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+      <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+      <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+      <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
     </ul>
     <div class="sports">
       <% if @user_sports.any? %>
@@ -35,7 +35,7 @@
   </div>
 
   <!-- Palmarès Card -->
-  <div class="card">
+  <div class="card" style="background-image: url('/assets/vecteezy_beautiful-blurred-vector-background_105252.jpg');">
     <img src="<%= asset_path('Palmarès.png') %>" alt="palmarès profil" class="card__image">
     <p class="card__name yellow-gradient mb-2" style="font-size:2em">Palmarès</p>
     <div class="palmares">
@@ -55,7 +55,7 @@
   </div>
 
   <!-- Dernières Teams Card -->
-  <div class="card">
+  <div class="card" style="background-image: url('/assets/vecteezy_beautiful-blurred-vector-background_105252.jpg');">
     <img src="<%= asset_path('team-profile.png') %>" alt="palmarès profil" class="card__image">
     <p class="card__name yellow-gradient mb-2" style="font-size:2em">Dernières teams</p>
     <div class="teams">
