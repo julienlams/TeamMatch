@@ -71,3 +71,75 @@
     outline: none;
   }
 }
+
+.see-team-modal {
+  font-family: 'Bebas Neue', cursive;
+}
+
+.see-team-modal .modal-background {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.see-team-modal .modal-content {
+  background: #f0f0f0; /* Fond clair pour un bon contraste avec le texte */
+  border-radius: 0.25rem;
+  padding: 20px;
+  color: #333; /* Couleur de texte sombre pour la lisibilité */
+  text-shadow: none; /* Supprimer les ombres de texte pour améliorer la lisibilité */
+  position: relative; /* Position relative pour que les éléments enfants puissent utiliser z-index */
+}
+
+.see-team-modal .modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #333; /* Couleur sombre pour le bouton de fermeture */
+  font-size: 2em;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 10; /* Mettre la croix de fermeture au premier plan */
+}
+
+.see-team-modal .modal-body {
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 0.25rem;
+  padding: 20px;
+  color: #333; /* Couleur de texte sombre pour la lisibilité */
+}
+
+.see-team-modal .modal-title {
+  margin: 0 0 10px;
+  font-size: 1.5em;
+}
+
+.see-team-modal .modal-text {
+  margin: 0 0 20px;
+  color: #333; /* Couleur de texte sombre pour la lisibilité */
+}
+
+.see-team-modal .btn {
+  text-decoration: none;
+  color: white;
+  padding: 10px 15px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  display: inline-block;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.see-team-modal .btn-secondary {
+  background-color: #6c757d;
+}
+
+.see-team-modal .btn:hover {
+  background-color: #0056b3;
+}
+
+.see-team-modal .btn:focus {
+  outline: none;
+}
