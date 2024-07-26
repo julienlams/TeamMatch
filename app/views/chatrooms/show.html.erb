@@ -1,13 +1,11 @@
 <div class="chatroom"
   data-controller="chatroom-subscription"
   data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
-  data-chatroom-subscription-current-user-id-value="<%= current_user.name %>">
-
+  data-chatroom-subscription-current-user-id-value="<%= current_user.id %>"> <!-- Assurez-vous que current_user.id est utilisé ici -->
   <div class="content-wrapper">
     <h1 class="yellow-gradient" style="background-color: white;"><%= @chatroom.team.name %></h1>
     <div class="mobile">
       <%= image_tag 'https://res.cloudinary.com/dsj2h7qb7/image/upload/v1721942948/qr0uyhtz3rrr14oyhisx.jpg', class: 'img' %>
-
       <div class="messages" data-chatroom-subscription-target="messages">
         <% @chatroom.messages.each do |message| %>
           <div class="message-row d-flex <%= message.sender?(current_user) ? 'justify-content-end' : 'justify-content-start' %>">
@@ -17,7 +15,6 @@
           </div>
         <% end %>
       </div>
-
       <%= simple_form_for [@chatroom, @message], url: chatroom_messages_path(@chatroom), html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "chat-form d-flex align-items-center" } do |f| %>
         <div class="form-group flex-grow-1 mb-0">
           <%= f.input :content, as: :text, input_html: { class: "form-control", rows: 1, placeholder: "Type your message here..." }, label: false %>

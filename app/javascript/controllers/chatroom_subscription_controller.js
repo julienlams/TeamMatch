@@ -5,7 +5,6 @@ export default class extends Controller {
   static values = { chatroomId: Number, currentUserId: Number }
   static targets = ["messages"]
 
-
   connect() {
     this.subscription = createConsumer().subscriptions.create(
       { channel: "ChatroomChannel", id: this.chatroomIdValue },
@@ -21,7 +20,6 @@ export default class extends Controller {
     console.log(`Subscribed to the chatroom with the id ${this.chatroomIdValue}.`)
   }
 
-
   disconnect() {
     console.log("Unsubscribed from the chatroom")
     this.subscription.unsubscribe()
@@ -31,12 +29,14 @@ export default class extends Controller {
     event.target.reset()
   }
 
-  #insertMessageAndScrollDown(data) { // Changed to underscore
+  #insertMessageAndScrollDown(data) {
+    console.log("Inserting message and scrolling down");  // Log message insertion
     const messageHTML = this.#buildMessageElement(this.currentUserIdValue === data.sender_id, data.message);
     this.messagesTarget.insertAdjacentHTML("beforeend", messageHTML);
     this.messagesTarget.scrollTo(0, this.messagesTarget.scrollHeight);
-    console.log("Scroll Height before scrollTo:", this.messagesTarget.scrollHeight);
+    console.log("Scroll Height after insert:", this.messagesTarget.scrollHeight);
   }
+
   #buildMessageElement(currentUserIsSender, message) {
     return `
       <div class="message-row d-flex ${this.#justifyClass(currentUserIsSender)}">
@@ -46,6 +46,7 @@ export default class extends Controller {
       </div>
     `
   }
+
   #justifyClass(currentUserIsSender) {
     return currentUserIsSender ? "justify-content-end" : "justify-content-start"
   }
